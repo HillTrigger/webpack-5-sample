@@ -8,13 +8,23 @@ type Mode = 'production' | 'development';
 interface EnvVariables {
   mode: Mode;
   port: number;
+  min: boolean;
 }
 
-export default (env: EnvVariables) => {
+export default (rawEnv: Record<string, unknown>) => {
+  const env: EnvVariables = {
+    mode: rawEnv.mode === 'production' ? 'production' : 'development',
+    port: Number(rawEnv.port) || 3000,
+    min: rawEnv.min !== 'false',
+  };
+
   const isDev = env.mode === 'development';
 
   const config: webpack.Configuration = {
     mode: env.mode,
+    optimization: {
+      minimize: env.min,
+    },
     entry: path.resolve(__dirname, 'src', 'index.ts'),
     output: {
       path: path.resolve(__dirname, 'build'),
