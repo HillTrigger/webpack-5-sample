@@ -1,5 +1,5 @@
 export interface BuildPaths {
-  entry: string;
+  entry: string[];
   html: string;
   output: string;
 }
@@ -11,4 +11,5 @@ export interface BuildOptions {
   paths: BuildPaths;
   mode: BuildMode;
   min: boolean;
+  analyzer: boolean;
 }

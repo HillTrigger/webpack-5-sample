@@ -3,11 +3,13 @@ import path from 'path';
 import webpack from 'webpack';
 import { BuildOptions } from './types/types';
 import { glob, globSync } from 'fs';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 export function buildPlugins({
   mode,
   paths,
+	analyzer
 }: BuildOptions): webpack.Configuration['plugins'] {
   const isDev = mode === 'development';
   const isProd = mode === 'production';
@@ -28,7 +30,9 @@ export function buildPlugins({
         minify: false, // Отключаем минификацию
       });
     }),
-    new MiniCssExtractPlugin(), // Нужен для добавления css в отдельные файлы
+    new MiniCssExtractPlugin({
+			filename: 'css/[name].css'
+		}), // Нужен для добавления css в отдельные файлы
   ];
 
   if (isDev) {
@@ -37,5 +41,8 @@ export function buildPlugins({
   if (isProd) {
     // plugins.push(new Plugin());
   }
+	if(analyzer) {
+		plugins.push(new BundleAnalyzerPlugin());
+	}
   return plugins;
 }

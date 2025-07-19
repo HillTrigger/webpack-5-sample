@@ -8,6 +8,7 @@ interface EnvVariables {
   mode: BuildMode;
   port: number;
   min: boolean;
+  analyzer?: boolean;
 }
 
 export default (rawEnv: Record<string, unknown>) => {
@@ -15,10 +16,14 @@ export default (rawEnv: Record<string, unknown>) => {
     mode: rawEnv.mode === 'production' ? 'production' : 'development',
     port: Number(rawEnv.port) || 3000,
     min: rawEnv.min !== 'false',
+		analyzer: rawEnv.analyzer === 'true' || rawEnv.analyzer === true,
   };
 
   const paths: BuildPaths = {
-    entry: path.resolve(__dirname, 'src', 'index.ts'),
+    entry: [
+      path.resolve(__dirname, 'src', 'index.js'),
+      path.resolve(__dirname, 'src', 'test.js'),
+    ],
     output: path.resolve(__dirname, 'dist'),
     html: path.resolve(__dirname, 'src', 'views'),
   };
@@ -28,6 +33,7 @@ export default (rawEnv: Record<string, unknown>) => {
     mode: env.mode ?? 'development',
     min: rawEnv.min !== 'false',
     paths,
+		analyzer: env.analyzer
   });
 
   return config;
