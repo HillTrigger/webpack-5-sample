@@ -21,7 +21,7 @@ export function buildLoaders(
     use: {
       loader: '@webdiscus/pug-loader',
       options: {
-        mode: 'render', // или 'compile' — выбирай по нужде
+        mode: 'compile', // или 'compile' — выбирай по нужде
         esModule: true, // для использования import
         // можно добавить embedFilters и другие опции
       },

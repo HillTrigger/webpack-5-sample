@@ -2,17 +2,18 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import { BuildOptions } from './types/types';
-import { glob, globSync } from 'fs';
+import { globSync } from 'fs';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 export function buildPlugins({
   mode,
   paths,
-	analyzer
+  analyzer,
 }: BuildOptions): webpack.Configuration['plugins'] {
   const isDev = mode === 'development';
   const isProd = mode === 'production';
+  const pugFiles = globSync(path.join(paths.html, '**/*.pug'));
 
   const plugins: webpack.Configuration['plugins'] = [
     // new HtmlWebpackPlugin({
@@ -20,19 +21,24 @@ export function buildPlugins({
     //   // favicon: './assests/favicon.ico', //Путь к вашей иконке
     // }),
     // HTML
-    ...globSync(path.join(paths.html, '**/*.pug')).map((html: string) => {
+    ...pugFiles.map((html: string) => {
       const filename = path.basename(html).replace(/\.[^.]+$/, '');
       // views.push(filename);
       return new HtmlWebpackPlugin({
         filename: `${filename}.html`,
         template: html,
+        templateParameters: {
+          sitemap: pugFiles.map((p) => `/${path.basename(p, '.pug')}.html`),
+          title: filename,
+          lang: 'en',
+        },
         // chunks: ['bundle', filename],
         minify: false, // Отключаем минификацию
       });
     }),
     new MiniCssExtractPlugin({
-			filename: 'css/[name].css'
-		}), // Нужен для добавления css в отдельные файлы
+      filename: 'css/[name].css',
+    }), // Нужен для добавления css в отдельные файлы
   ];
 
   if (isDev) {
@@ -41,8 +47,10 @@ export function buildPlugins({
   if (isProd) {
     // plugins.push(new Plugin());
   }
-	if(analyzer) {
-		plugins.push(new BundleAnalyzerPlugin());
-	}
+  if (analyzer) {
+    plugins.push(new BundleAnalyzerPlugin());
+  }
   return plugins;
 }
+
+// Функция для получения имён файлов во views

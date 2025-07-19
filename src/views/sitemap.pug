@@ -1,0 +1,11 @@
+doctype html
+html(lang=lang)
+  head
+    title= title
+  body
+    h1= title
+    ul
+      each page in sitemap
+        li
+          a(href=page)= page
+
