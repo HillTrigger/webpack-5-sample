@@ -60,5 +60,3 @@ export function buildPlugins({
   }
   return plugins;
 }
-
-// Функция для получения имён файлов во views
