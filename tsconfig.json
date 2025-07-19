@@ -9,14 +9,21 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-		"baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@/*": ["./src"]
+      "@/*": ["*"],
+      "@img/*": ["img/*"],
+      "@sections/*": ["modules/sections/*"],
+      "@scss/*": ["scss/*"],
+      "@modules/*": ["js/modules/*"],
+      "@components/*": ["js/components/*"],
+      "@helpers/*": ["js/helpers/*"],
+      "@utils/*": ["js/utils/*"]
     }
   },
   "ts-node": {
     "compilerOptions": {
-      "module": "CommonJS",
+      "module": "CommonJS"
     }
   }
 }

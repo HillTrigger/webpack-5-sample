@@ -1,50 +1,12 @@
 doctype html
 html(lang="en")
-  head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0")
-    title Test Pug Page
+	head
+		meta(charset="UTF-8")
+		meta(name="viewport" content="width=device-width, initial-scale=1.0")
+		title Test Pug Page
 
-  body
-    h1 Пример с циклами и пагинацией
+	body
+		div
+			img(src=require('@img/ar.jpg'), alt="")
 
-    //- 1. Цикл each — простой список
-    - const values = ['Alice', 'Bob', 'Charlie']
-    ul
-      each name, idx in values
-        li #{idx + 1}. #{name}
-      else
-        li Нет элементов :contentReference[oaicite:1]{index=1}
 
-    //- 2. Пример with while
-    - let count = 0
-    p Пока count < 3:
-    ul
-      while count < 3
-        li Счетчик = #{count}
-        - count++
-
-    //- 3. Миксин пагинации
-    mixin pagination(amount, active, ellipsis, last, arrows = false)
-      nav.pagination(role="navigation" aria-label="pagination")
-        if arrows
-          a.pagination__prev(href="#", title="Prev") ◀
-        ul.pagination__list
-          - for (let i = 1; i <= amount; i++)
-            if i === active
-              li.pagination__item.is-active
-                a.pagination__number(href="#")= i
-            else if i === ellipsis
-              li.pagination__item
-                a.pagination__number.is-collapsed(href="#") …  
-            else
-              li.pagination__item
-                a.pagination__number(href="#")= i
-          - for (let i = amount + 1; i <= last; i++)
-            li.pagination__item
-              a.pagination__number(href="#")= i
-        if arrows
-          a.pagination__next(href="#", title="Next") ▶
-
-    //- 4. Вызов миксина
-    +pagination(5, 3, 4, 9, true)

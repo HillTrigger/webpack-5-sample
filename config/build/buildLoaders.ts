@@ -45,12 +45,19 @@ export function buildLoaders(
       options: {
         mode: 'compile',
         esModule: true, // для использования import
-				// pretty: isDev,
-				// compileDebug: isDev,
+        // pretty: isDev,
+        // compileDebug: isDev,
         // можно добавить embedFilters и другие опции
       },
     },
   };
+  const assetLoader = {
+    test: /\.(png|jpe?g|gif|svg|webp)$/i,
+    type: 'asset/resource',
+    generator: {
+      filename: 'images/[name][ext]',
+    },
+  };
 
-  return [cssLoader, tsLoader, pugLoader];
+  return [cssLoader, tsLoader, pugLoader, assetLoader];
 }
