@@ -1,0 +1,27 @@
+.os-scrollbar {
+  &.os-theme-custom {
+    --os-size: #{rem(14)};
+    --os-padding-perpendicular: #{rem(4)};
+    --os-padding-axis: #{rem(16)};
+    --os-track-border-radius: #{rem(10)};
+    --os-track-bg: none;
+    --os-track-bg-hover: none;
+    --os-track-bg-active: none;
+    --os-track-border: none;
+    --os-track-border-hover: none;
+    --os-track-border-active: none;
+    --os-handle-border-radius: #{rem(10)};
+    --os-handle-bg: var(--secondary-600);
+    --os-handle-bg-hover: var(--secondary-500);
+    --os-handle-bg-active: var(--secondary-400);
+    --os-handle-border: #{rem(1)} solid var(--secondary-300);
+    --os-handle-border-hover: #{rem(1)} solid var(--secondary-200);
+    --os-handle-border-active: #{rem(1)} solid var(--secondary-100);
+    --os-handle-min-size: #{rem(33)};
+    --os-handle-max-size: none;
+    --os-handle-perpendicular-size: 100%;
+    --os-handle-perpendicular-size-hover: 100%;
+    --os-handle-perpendicular-size-active: 100%;
+    --os-handle-interactive-area-offset: #{rem(4)};
+  }
+}

@@ -1,5 +1,5 @@
 // scss
-// import '@scss/styles.scss';
+import '@scss/styles.scss';
 
 // svg
 // import '@modules/_svg';
@@ -36,5 +36,3 @@
 //     '@components/Select'
 //   );
 // })();
-
-console.log('hi');

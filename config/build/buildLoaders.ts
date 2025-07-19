@@ -8,8 +8,8 @@ export function buildLoaders(
   const isDev = options.mode === 'development';
 
   const cssLoader = {
-    test: /\.css$/i,
-    use: [MiniCssExtractPlugin.loader, 'css-loader'],
+    test: /\.s[ac]ss$/i,
+    use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
   };
   const tsLoader = {
     test: /\.tsx?$/,

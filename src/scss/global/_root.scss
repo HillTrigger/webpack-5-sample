@@ -1,0 +1,8 @@
+@include init-css-vars();
+
+:root {
+  --color-main: var(--white);
+  --bg-color-main: var(--black);
+  --desktop-point: 1920;
+  --ps: calc(max(100vw, var(--desktop-point) * 1px) / var(--desktop-point));
+}
