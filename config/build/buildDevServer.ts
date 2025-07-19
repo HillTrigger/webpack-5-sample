@@ -7,7 +7,7 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
     open: true,
     hot: true,
     watchFiles: {
-      paths: ['src/**/*.*'],
+      paths: ['src/views/*.pug'],
       options: {
         usePolling: true,
       },
