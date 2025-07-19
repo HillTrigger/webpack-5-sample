@@ -46,6 +46,8 @@ export function buildLoaders(
       options: {
         mode: 'compile',
         esModule: true, // для использования import
+				// basedir: path.resolve(options.paths.src),
+				// prependData: `include /partials/index.pug`
         // pretty: isDev,
         // compileDebug: isDev,
         // можно добавить embedFilters и другие опции
