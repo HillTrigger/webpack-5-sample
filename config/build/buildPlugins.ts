@@ -45,7 +45,7 @@ export function buildPlugins({
       });
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
+      filename: 'css/bundle.css',
     }), // Нужен для добавления css в отдельные файлы
   ];
 

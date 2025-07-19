@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpack --env mode=development",
+    "build:dev": "webpack --env mode=development min=false",
     "build:prod": "webpack --env mode=production",
     "start": "webpack serve --env mode=development --open"
   },
@@ -25,6 +25,7 @@
     "sass": "^1.89.2",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
+    "thread-loader": "^4.0.4",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
