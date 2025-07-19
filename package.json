@@ -16,6 +16,7 @@
     "@types/webpack": "^5.28.5",
     "@types/webpack-bundle-analyzer": "^4.7.0",
     "@types/webpack-dev-server": "^4.7.1",
+    "@webdiscus/pug-loader": "^2.11.1",
     "css-loader": "^7.1.2",
     "html-webpack-plugin": "^5.6.3",
     "mini-css-extract-plugin": "^2.9.2",
@@ -27,5 +28,8 @@
     "webpack-bundle-analyzer": "^4.10.2",
     "webpack-cli": "^6.0.1",
     "webpack-dev-server": "^5.2.1"
+  },
+  "dependencies": {
+    "pug": "^3.0.3"
   }
 }

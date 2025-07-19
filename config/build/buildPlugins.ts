@@ -20,7 +20,7 @@ export function buildPlugins({
     //   // favicon: './assests/favicon.ico', //Путь к вашей иконке
     // }),
     // HTML
-    ...globSync(path.join(paths.html, '**/*.html')).map((html: string) => {
+    ...globSync(path.join(paths.html, '**/*.pug')).map((html: string) => {
       const filename = path.basename(html).replace(/\.[^.]+$/, '');
       // views.push(filename);
       return new HtmlWebpackPlugin({

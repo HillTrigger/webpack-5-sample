@@ -16,6 +16,17 @@ export function buildLoaders(
     use: 'ts-loader',
     exclude: /node_modules/,
   };
+  const pugLoader = {
+    test: /\.pug$/,
+    use: {
+      loader: '@webdiscus/pug-loader',
+      options: {
+        mode: 'render', // или 'compile' — выбирай по нужде
+        esModule: true, // для использования import
+        // можно добавить embedFilters и другие опции
+      },
+    },
+  };
 
-  return [cssLoader, tsLoader];
+  return [cssLoader, tsLoader, pugLoader];
 }
