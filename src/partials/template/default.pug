@@ -1,0 +1,21 @@
+//- layout.pug
+
+doctype html
+html(data-theme="light" class=`page page--${title}`)
+	head
+		include ../layouts/head
+
+		title #{title}
+		block head
+
+	body
+		.content
+			include ../layouts/header
+			block header
+
+			main
+				block content
+
+			include ../layouts/footer
+
+		include ../layouts/modals
