@@ -5,6 +5,8 @@ import { BuildOptions } from './types/types';
 import { globSync } from 'fs';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+import SvgChunkWebpackPlugin from 'svg-chunk-webpack-plugin';
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 export function buildPlugins({
   mode,
@@ -47,6 +49,7 @@ export function buildPlugins({
     new MiniCssExtractPlugin({
       filename: 'css/bundle.css',
     }), // Нужен для добавления css в отдельные файлы
+    new SpriteLoaderPlugin({ plainSprite: true }),
   ];
 
   if (isDev) {

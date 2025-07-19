@@ -2,7 +2,7 @@
 import '@scss/styles.scss';
 
 // svg
-// import '@modules/_svg';
+import '@modules/_svg';
 
 // components
 // import '@components/Scrollbar';

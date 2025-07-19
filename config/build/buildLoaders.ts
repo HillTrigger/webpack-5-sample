@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 import webpack from 'webpack';
 import { BuildOptions } from './types/types';
+import path from 'path';
 
 export function buildLoaders(
   options: BuildOptions
@@ -58,6 +59,28 @@ export function buildLoaders(
       filename: 'images/[name][ext]',
     },
   };
+  const spriteLoader = {
+    test: /\.svg$/,
+    include: path.resolve(options.paths.src, 'svg'), // <--- только /svg/
+    use: [
+      {
+        loader: 'svg-sprite-loader',
+        options: {
+          extract: true,
+          spriteFilename: 'svg/sprite.svg', // <--- сюда будет собираться спрайт
+        },
+      },
+      'svgo-loader', // опционально, для оптимизации SVG
+    ],
+  };
+  const svgLoader = {
+    test: /\.svg$/i,
+    type: 'asset/resource',
+    generator: {
+      filename: 'images/svg/[name][ext]',
+    },
+    include: [options.paths.src + 'img/svg/'],
+  };
 
-  return [cssLoader, tsLoader, pugLoader, assetLoader];
+  return [cssLoader, tsLoader, pugLoader, assetLoader, svgLoader, spriteLoader];
 }
