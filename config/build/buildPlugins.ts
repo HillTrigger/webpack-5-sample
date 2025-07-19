@@ -16,22 +16,30 @@ export function buildPlugins({
   const pugFiles = globSync(path.join(paths.html, '**/*.pug'));
 
   const plugins: webpack.Configuration['plugins'] = [
-    // new HtmlWebpackPlugin({
-    //   template: paths.html, // Путь к вашему шаблону
-    //   // favicon: './assests/favicon.ico', //Путь к вашей иконке
-    // }),
     // HTML
     ...pugFiles.map((html: string) => {
       const filename = path.basename(html).replace(/\.[^.]+$/, '');
+      const templateParameters = (() => {
+        switch (filename) {
+          case 'sitemap':
+            return {
+              sitemap: pugFiles.map((p) => `/${path.basename(p, '.pug')}.html`),
+              title: filename,
+              lang: 'en',
+            };
+
+          default:
+            return {
+              title: filename,
+              lang: 'en',
+            };
+        }
+      })();
       // views.push(filename);
       return new HtmlWebpackPlugin({
         filename: `${filename}.html`,
         template: html,
-        templateParameters: {
-          sitemap: pugFiles.map((p) => `/${path.basename(p, '.pug')}.html`),
-          title: filename,
-          lang: 'en',
-        },
+        templateParameters,
         // chunks: ['bundle', filename],
         minify: false, // Отключаем минификацию
       });
