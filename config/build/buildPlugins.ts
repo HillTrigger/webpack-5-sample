@@ -23,7 +23,7 @@ export function buildPlugins({
         switch (filename) {
           case 'sitemap':
             return {
-              sitemap: pugFiles.map((p) => `/${path.basename(p, '.pug')}.html`),
+              sitemap: pugFiles.map((p) => `${path.basename(p, '.pug')}`),
               title: filename,
               lang: 'en',
             };

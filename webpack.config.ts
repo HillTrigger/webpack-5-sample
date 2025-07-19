@@ -21,11 +21,12 @@ export default (rawEnv: Record<string, unknown>) => {
 
   const paths: BuildPaths = {
     entry: [
-      path.resolve(__dirname, 'src', 'index.js'),
-      path.resolve(__dirname, 'src', 'test.js'),
+      path.resolve(__dirname, 'src', 'js/views/bundle.js'),
+      // path.resolve(__dirname, 'src', 'test.js'),
     ],
     output: path.resolve(__dirname, 'dist'),
     html: path.resolve(__dirname, 'src', 'views'),
+    src: path.resolve(__dirname, 'src'),
   };
 
   const config: webpack.Configuration = buildWebpack({
