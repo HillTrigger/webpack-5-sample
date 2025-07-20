@@ -1,4 +1,4 @@
-import '@scss/inline.scss';
+// import '@scss/inline.scss';
 
 // modules
 import '@modules/onLoad';

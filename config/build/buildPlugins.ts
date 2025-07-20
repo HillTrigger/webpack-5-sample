@@ -47,7 +47,9 @@ export function buildPlugins({
       });
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/bundle.css',
+      // filename: 'css/bundle.css',
+      filename: 'css/[name].css',
+      chunkFilename: '[id].css',
     }), // Нужен для добавления css в отдельные файлы
     new SpriteLoaderPlugin({ plainSprite: true }),
   ];

@@ -22,7 +22,20 @@ export function buildLoaders(
       MiniCssExtractPlugin.loader,
       'css-loader',
       // threadLoader, // малоэффективен
-      'sass-loader',
+      {
+        loader: 'sass-loader',
+        options: {
+          // additionalData: () => {
+          //   const globalScss = [
+          //     path.resolve(options.paths.src, 'scss/utils/_functions.scss'),
+          //     path.resolve(options.paths.src, 'scss/utils/_mixins.scss'),
+          //     path.resolve(options.paths.src, 'scss/variables/_colors.scss'),
+          //     path.resolve(options.paths.src, 'scss/variables/_variables.scss'),
+          //   ];
+					// 	return globalScss.map(filePath => `@use "${filePath.replace(/\\/g, '/')}" as *;`).join('\n');
+          // },
+        },
+      },
     ],
   };
   const tsLoader = {
@@ -46,8 +59,8 @@ export function buildLoaders(
       options: {
         mode: 'compile',
         esModule: true, // для использования import
-				// basedir: path.resolve(options.paths.src),
-				// prependData: `include /partials/index.pug`
+        // basedir: path.resolve(options.paths.src),
+        // prependData: `include /partials/index.pug`
         // pretty: isDev,
         // compileDebug: isDev,
         // можно добавить embedFilters и другие опции

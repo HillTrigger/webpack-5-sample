@@ -1,5 +1,10 @@
 // // Extensions - Расширения
-// @import 'extensions/reset';
+// @use 'extensions/reset';
+@use 'global';
+
+// * {
+// 	// font-size: rem(20);
+// }
 
 // // Libs - Библиотеки
 // @import 'libs/libs';
@@ -8,7 +13,7 @@
 // @import 'utils/functions';
 // @import 'utils/mixins';
 
-// // Variables - Переменные
+// // // Variables - Переменные
 // @import 'variables/colors';
 // @import 'variables/variables';
 
@@ -43,12 +48,3 @@
 // @import 'layouts/footer';
 
 // // Sections - Секции
-
-* {
-	color: green;
-
-	span {
-		color: green;
-		font-size: 12px;
-	}
-}

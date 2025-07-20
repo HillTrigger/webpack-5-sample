@@ -9,6 +9,7 @@ interface EnvVariables {
   port: number;
   min: boolean;
   analyzer?: boolean;
+  publicPath?: string;
 }
 
 export default (rawEnv: Record<string, unknown>) => {
@@ -16,14 +17,16 @@ export default (rawEnv: Record<string, unknown>) => {
     mode: rawEnv.mode === 'production' ? 'production' : 'development',
     port: Number(rawEnv.port) || 3000,
     min: rawEnv.min !== 'false',
-		analyzer: rawEnv.analyzer === 'true' || rawEnv.analyzer === true,
+    analyzer: rawEnv.analyzer === 'true' || rawEnv.analyzer === true,
   };
 
   const paths: BuildPaths = {
-    entry: [
-      path.resolve(__dirname, 'src', 'js/views/bundle.js'),
+    entry: {
+      _head: path.resolve(__dirname, 'src', 'js/layout/head.js'),
+      bundle: path.resolve(__dirname, 'src', 'js/views/bundle.js'),
+      index: path.resolve(__dirname, 'src', 'js/views/index.js'),
       // path.resolve(__dirname, 'src', 'test.js'),
-    ],
+    },
     output: path.resolve(__dirname, 'dist'),
     html: path.resolve(__dirname, 'src', 'views'),
     src: path.resolve(__dirname, 'src'),
@@ -34,7 +37,8 @@ export default (rawEnv: Record<string, unknown>) => {
     mode: env.mode ?? 'development',
     min: rawEnv.min !== 'false',
     paths,
-		analyzer: env.analyzer
+    analyzer: env.analyzer, // true чтобы анализировать размеры файлов
+    publicPath: env.publicPath ?? '',
   });
 
   return config;

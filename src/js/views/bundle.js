@@ -5,7 +5,7 @@ import '@scss/styles.scss';
 import '@modules/_svg';
 
 // components
-// import '@components/Scrollbar';
+import '@components/Scrollbar';
 // import '@components/Modal';
 // import '@components/Dropdown';
 // import '@components/Select';
@@ -36,3 +36,5 @@ import '@modules/_svg';
 //     '@components/Select'
 //   );
 // })();
+
+console.log('123');

@@ -8,7 +8,7 @@ import { buildResolvers } from './buildResolvers';
 import { BuildOptions } from './types/types';
 
 export function buildWebpack(options: BuildOptions): webpack.Configuration {
-  const { mode, paths, min } = options;
+  const { mode, paths, min, publicPath } = options;
   const isDev = mode === 'development';
 
   return {
@@ -20,7 +20,9 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
     output: {
       path: paths.output,
       filename: 'js/[name].js',
+			publicPath,
       clean: true,
+			chunkFilename: 'js/chunks/chunk_[name].js',
     },
     plugins: buildPlugins(options),
     module: {

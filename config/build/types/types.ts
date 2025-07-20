@@ -1,5 +1,5 @@
 export interface BuildPaths {
-  entry: string[];
+  entry: Record<string, string>;
   html: string;
   output: string;
   src: string;
@@ -13,4 +13,5 @@ export interface BuildOptions {
   mode: BuildMode;
   min: boolean;
   analyzer: boolean;
+  publicPath: string;
 }

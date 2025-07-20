@@ -4,7 +4,7 @@
   @return red($hex), green($hex), blue($hex);
 }
 
-@function rem($px, $context: 16) {
+@function rem($px) {
   @return round($px / $context * 1rem * 10000) / 10000;
 }
 
