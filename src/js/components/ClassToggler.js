@@ -1,4 +1,4 @@
-import { disablePageScroll, enablePageScroll } from 'scroll-lock';
+import { disablePageScroll, enablePageScroll } from '@fluejs/noscroll';
 
 import { isDescendant } from '@utils/elements';
 import { extend } from '@utils/objects';

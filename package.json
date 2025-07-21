@@ -12,6 +12,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@fluejs/noscroll": "^1.0.0",
     "@types/glob": "^8.1.0",
     "@types/node": "^22.15.3",
     "@types/webpack": "^5.28.5",
@@ -39,6 +40,10 @@
     "webpack-dev-server": "^5.2.1"
   },
   "dependencies": {
-    "overlayscrollbars": "^2.11.4"
+    "@popperjs/core": "^2.11.8",
+    "inputmask": "^5.0.9",
+    "mark.js": "^8.11.1",
+    "overlayscrollbars": "^2.11.4",
+    "tippy.js": "^6.3.7"
   }
 }

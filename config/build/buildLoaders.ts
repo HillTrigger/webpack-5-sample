@@ -60,7 +60,7 @@ export function buildLoaders(
     },
   };
   const assetLoader = {
-    test: /\.(png|jpe?g|gif|svg|webp)$/i,
+    test: /\.(png|jpe?g|gif|webp)$/i,
     type: 'asset/resource',
     generator: {
       filename: 'images/[name][ext]',
