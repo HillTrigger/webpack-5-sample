@@ -24,17 +24,9 @@ export function buildLoaders(
       // threadLoader, // малоэффективен
       {
         loader: 'sass-loader',
-        options: {
-          // additionalData: () => {
-          //   const globalScss = [
-          //     path.resolve(options.paths.src, 'scss/utils/_functions.scss'),
-          //     path.resolve(options.paths.src, 'scss/utils/_mixins.scss'),
-          //     path.resolve(options.paths.src, 'scss/variables/_colors.scss'),
-          //     path.resolve(options.paths.src, 'scss/variables/_variables.scss'),
-          //   ];
-					// 	return globalScss.map(filePath => `@use "${filePath.replace(/\\/g, '/')}" as *;`).join('\n');
-          // },
-        },
+        // options: {
+        //   // additionalData: '@use "../../src/scss/global.scss" as *;',
+        // },
       },
     ],
   };
@@ -96,6 +88,22 @@ export function buildLoaders(
     },
     include: [options.paths.src + 'img/svg/'],
   };
+  const fontsLoader = {
+    test: /\.(woff|woff2|eot|ttf|otf)$/i,
+    type: 'asset/resource',
+    generator: {
+      filename: 'fonts/[name][ext]',
+      publicPath: '../fonts/', // путь от CSS до шрифтов
+    },
+  };
 
-  return [cssLoader, tsLoader, pugLoader, assetLoader, svgLoader, spriteLoader];
+  return [
+    cssLoader,
+    tsLoader,
+    pugLoader,
+    assetLoader,
+    svgLoader,
+    spriteLoader,
+    fontsLoader,
+  ];
 }

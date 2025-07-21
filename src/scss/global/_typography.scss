@@ -1,3 +1,6 @@
+@use '../utils/mixins' as *;
+@use '../variables/variables' as *;
+
 * {
   &::selection {
     background: var(--primary-disabled-text);

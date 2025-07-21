@@ -1,50 +1,41 @@
 // // Extensions - Расширения
-// @use 'extensions/reset';
-@use 'global';
-
-// * {
-// 	// font-size: rem(20);
-// }
+@use 'extensions/reset';
 
 // // Libs - Библиотеки
-// @import 'libs/libs';
+@use 'libs/libs';
 
-// // Utils - Утилиты
-// @import 'utils/functions';
-// @import 'utils/mixins';
-
-// // // Variables - Переменные
-// @import 'variables/colors';
-// @import 'variables/variables';
+// Утилиты и Переменные подключаются отдельно для каждого файла, вручную(способа это автоматизировать не нашёл)
 
 // // Global - Глобальное
-// @import 'global/root';
-// @import 'global/fonts';
-// @import 'global/global';
-// @import 'global/typography';
-// @import 'global/animations';
-// @import 'global/scrollbar';
+@use 'global/root';
+@use 'global/fonts';
+@use 'global/global';
+@use 'global/typography';
+@use 'global/animations';
+@use 'global/scrollbar';
 
 // // UI - Пользовательский интерфейс
-// @import 'ui/button';
-// @import 'ui/input';
-// @import 'ui/checkbox';
-// @import 'ui/radio';
-// @import 'ui/switch';
+@use 'ui/button';
+@use 'ui/input';
+@use 'ui/checkbox';
+@use 'ui/radio';
+@use 'ui/switch';
 
 // // Components - Компоненты
-// @import 'components/dropdown';
-// @import 'components/select';
-// @import 'components/modal';
-// @import 'components/tooltip';
-// @import 'components/tabs';
-// @import 'components/accordion';
+@use 'components/dropdown';
+@use 'components/select';
+@use 'components/modal';
+@use 'components/tooltip';
+@use 'components/tabs';
+@use 'components/accordion';
+
+
 // //
-// // @import 'components/modals/example';
+// @use 'components/modals/example';
 
 // // Layouts - Компоновка
-// @import 'layouts/layouts';
-// @import 'layouts/header';
-// @import 'layouts/footer';
+@use 'layouts/layouts';
+@use 'layouts/header';
+@use 'layouts/footer';
 
 // // Sections - Секции

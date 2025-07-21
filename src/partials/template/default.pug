@@ -10,12 +10,14 @@ html(data-theme="light" class=`page page--${title}`)
 
 	body
 		.content
-			include ../layouts/header
 			block header
+				include ../layouts/header
+
 
 			main
 				block content
 
-			include ../layouts/footer
+			block footer
+				include ../layouts/footer
 
 		include ../layouts/modals

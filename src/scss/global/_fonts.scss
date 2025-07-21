@@ -1,1 +1,4 @@
+@use '../utils/mixins' as *;
+@use '../variables/variables' as *;
+
 @include font-face($font, $font-path, 400);

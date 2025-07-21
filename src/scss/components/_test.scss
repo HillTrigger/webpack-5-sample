@@ -1,0 +1,5 @@
+* {
+	@include min-width($breakpoint-md) {
+		color: red;
+	}
+}

@@ -1,3 +1,5 @@
+@use '../variables/variables' as *;
+
 html {
   color: var(--color-main);
   background-color: var(--bg-color-main);

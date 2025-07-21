@@ -1,4 +1,6 @@
 @use 'sass:map';
+@use '../variables/colors' as *;
+@use '../utils/functions' as *;
 
 @mixin placeholder() {
   &::-webkit-input-placeholder {

@@ -1,11 +1,15 @@
-@use 'sass:string';
+@use "sass:string";
+@use "sass:math";
+@use "sass:color";
 
 @function hextorgb($hex) {
-  @return red($hex), green($hex), blue($hex);
+  @return color.channel($hex, "red"), color.channel($hex, "green"), color.channel($hex, "blue");
 }
 
-@function rem($px) {
-  @return round($px / $context * 1rem * 10000) / 10000;
+@function rem($px, $context: 16) {
+  $raw: math.div($px, $context) * 1rem * 10000;
+  $rounded: math.round($raw);
+  @return math.div($rounded, 10000);
 }
 
 @function split-str($string, $separator) {

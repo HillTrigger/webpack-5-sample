@@ -1,3 +1,8 @@
+@use '../utils/mixins' as *;
+@use '../variables/variables' as *;
+@use '../utils/functions' as *;
+@use "sass:list";
+
 .input,
 .textarea {
   --color: inherit;
@@ -22,8 +27,8 @@
   --font-size: #{$input-font-size};
   --font-weight: #{$input-font-weight};
   --line-height: #{$input-line-height};
-  --padding-y: #{nth($input-padding, 1)};
-  --padding-x: #{nth($input-padding, 2)};
+  --padding-y: #{list.nth($input-padding, 1)};
+  --padding-x: #{list.nth($input-padding, 2)};
   --box-shadow: #{$input-box-shadow};
 
   padding: var(--padding-y) var(--padding-x);
@@ -163,8 +168,8 @@
 }
 
 .textarea {
-  --padding-y: #{nth($textarea-padding, 1)};
-  --padding-x: #{nth($textarea-padding, 2)};
+  --padding-y: #{list.nth($textarea-padding, 1)};
+  --padding-x: #{list.nth($textarea-padding, 2)};
   --height: #{$textarea-height};
 
   height: var(--height);

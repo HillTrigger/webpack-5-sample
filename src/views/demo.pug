@@ -1,0 +1,148 @@
+extends ../partials/template/default
+
+block content		
+	// Example section
+	section.example-section
+						.container
+							.example
+								.example__wrap
+									.example__header
+										h1.example__title #{title}
+
+									.example__body
+										form#form-test(style="display: grid; grid-template-columns: repeat(6, 1fr);")
+											.example-select
+												select#select-1.select(name="select-name-1" data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": ""}, "svgPath": "svg/sprite.svg"}')
+													optgroup(label="Animals")
+														option(value="dog" selected) Dog
+														option(value="cat") Cat
+														option(value="hamster") Hamster
+													optgroup(label="Flying pets")
+														option(value="parrot" disabled) Parrot
+														option(value="macaw") Macaw
+														option(value="albatross") Albatross
+
+											.example-select
+												select#select-2.select(name="select-name-2" data-select='{"placeholder": "Dropdown placeholder"}' multiple)
+													optgroup(label="Animals")
+														option(value="dog" selected) Dog
+														option(value="cat") Cat
+														option(value="hamster") Hamster
+													optgroup(label="Flying pets")
+														option(value="parrot") Parrot
+														option(value="macaw" disabled) Macaw
+														option(value="albatross") Albatross
+													option(value="parrot2" disabled) Parrot2
+													option(value="macaw2") Macaw2
+													option(value="albatross2") Albatross2
+
+											.example-select
+												select#select-3.select(name="select-name-3" data-select='{"placeholder": "Dropdown placeholder", "templateItem": "select-item-default"}')
+													option(value="parrot" data-option='{"0": "https://via.placeholder.com/40x40", "1": "option-icon-1", "2": "Parrot", "3": "Parrot text"}' disabled) Parrot
+													option(value="macaw" data-option='{"0": "https://via.placeholder.com/40x40", "1": "option-icon-2", "2": "Macaw", "3": "Macaw text"}') Macaw
+													option(value="albatross" data-option='{"0": "https://via.placeholder.com/40x40", "1": "option-icon-3", "2": "Albatross", "3": "Albatross text"}') Albatross
+
+											.example-select
+												select#select-4.select(name="select-name-4" data-select='{"placeholder": "Dropdown placeholder", "templateItem": "select-item-default", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": true}}' multiple)
+													option(value="parrot" data-option='{"0": "https://via.placeholder.com/40x40", "1": "option-icon-1", "2": "Parrot", "3": "Parrot text"}' disabled) Parrot
+													option(value="macaw" data-option='{"0": "https://via.placeholder.com/40x40", "1": "option-icon-2", "2": "Macaw", "3": "Macaw text"}') Macaw
+													option(value="albatross" data-option='{"0": "https://via.placeholder.com/40x40", "1": "option-icon-3", "2": "Albatross", "3": "Albatross text"}') Albatross
+
+											.example-select
+												select#select-5.select(name="select-name-5" data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": "", "autofocus": true, "inside": true}}' multiple)
+													option(value="parrot" disabled) Parrot
+													option(value="macaw") Macaw
+													option(value="albatross") Albatross
+
+											.example-select
+												select#select-6.select(name="select-name-6" data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true, "textSelectAll": "Выбрать все", "textUnselectAll": "Убрать все"}}' multiple)
+													option(value="dog") Dog
+													option(value="cat") Cat
+													option(value="hamster") Hamster
+													option(value="parrot") Parrot
+													option(value="macaw" disabled) Macaw
+													option(value="albatross") Albatross
+
+											// template
+											.select-template#select-item-default(style="display: none")
+												.select-template__img-wrapper
+													img.select-template__img(src="https://placehold.jp/40x40.png" alt="")
+												.select-template__wrap
+													span.select-template__title Parrot
+													p.select-template__text Parrot text
+
+											button.button SUBMIT
+
+										script.
+											document.getElementById('form-test').addEventListener('submit', function (e) {
+												e.preventDefault();
+												const data = new FormData(this);
+												const formatData = {};
+												for (var key of data.entries()) {
+													if (!formatData[key[0]]) {
+														formatData[key[0]] = [];
+													}
+													formatData[key[0]].push(key[1]);
+												}
+												console.log(formatData);
+											});
+
+										// Tabs
+										.tabs(data-tabs="test-tabs" style="margin-top: 4rem")
+											button.button.button-tab(data-tab="test-tab-1") tab 1
+											button.button.button-tab(data-tab="test-tab-2") tab 2
+											button.button.button-tab(data-tab="test-tab-3") tab 3
+
+										.tabs-contents(data-tabs-contents="test-tabs")
+											.tab-content(data-tab-content="test-tab-1") tab content 1
+											.tab-content(data-tab-content="test-tab-2")
+												| tab content 2
+												.tabs(data-tabs="test-tabs-2" style="padding-left: 2rem")
+													button.button.button-tab(data-tab="test-tab-1") tab 2-1
+													button.button.button-tab(data-tab="test-tab-2") tab 2-2
+													button.button.button-tab(data-tab="test-tab-3") tab 2-3
+												.tabs-contents(data-tabs-contents="test-tabs-2")
+													.tab-content(data-tab-content="test-tab-1")
+														| tab content 2-1
+														.tabs(data-tabs="test-tabs-3" style="padding-left: 2rem")
+															button.button.button-tab(data-tab="test-tab-1") tab 3-1
+															button.button.button-tab(data-tab="test-tab-2") tab 3-2
+															button.button.button-tab(data-tab="test-tab-3") tab 3-3
+														.tabs-contents(data-tabs-contents="test-tabs-3")
+															.tab-content(data-tab-content="test-tab-1") tab content 3-1
+															.tab-content(data-tab-content="test-tab-2") tab content 3-2
+															.tab-content(data-tab-content="test-tab-3") tab content 3-3
+													.tab-content(data-tab-content="test-tab-2") tab content 2-2
+													.tab-content(data-tab-content="test-tab-3") tab content 2-3
+											.tab-content(data-tab-content="test-tab-3") tab content 3
+
+										// Modal example
+										.button(style="margin-top: 4rem" data-modal-target="#modal-example") modal example
+
+										// Dropdowns
+										.container(style="margin-top: 4rem")
+											.container__wrap(style="display: inline-flex; gap: 1rem")
+												.test__dropdown
+													#dropdown.dropdown(data-dropdown data-tippy="Dropdown")
+														button.button.dropdown__button.j_toggleDropdown
+															span Dropdown
+															.dropdown__arrow-wrapper
+																+svg('arrow-down')
+														.dropdown__content Dropdown content
+												.test__dropdown
+													#dropdown2.dropdown(data-dropdown='{"popper": true}' data-tippy="Popper Dropdown")
+														button.button.dropdown__button.j_toggleDropdown
+															span Popper Dropdown
+															.dropdown__arrow-wrapper
+																+svg('arrow-down')
+														.dropdown__content Popper Dropdown content
+
+										// Container layout
+										.container(style="margin-top: 4rem")
+											.container__wrap
+												.container__left(style="background-color: #ccc")
+													.test-content(style="min-height: 8rem") container__left
+												.container__right(style="background-color: #ddd")
+													.test-content(style="min-height: 8rem") container__right
+
+									.example__footer

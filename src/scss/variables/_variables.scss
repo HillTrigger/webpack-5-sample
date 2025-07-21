@@ -1,3 +1,5 @@
+@use '../utils/functions' as *;
+
 /* Media */
 $breakpoint-hd: rem(1920);
 $breakpoint-xl: rem(1440);

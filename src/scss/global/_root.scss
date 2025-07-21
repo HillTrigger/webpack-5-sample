@@ -1,4 +1,6 @@
-@include init-css-vars();
+@use '../utils/mixins';
+
+@include mixins.init-css-vars();
 
 :root {
   --color-main: var(--white);

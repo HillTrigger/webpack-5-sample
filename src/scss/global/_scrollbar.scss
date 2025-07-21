@@ -1,3 +1,5 @@
+@use '../utils/functions' as *;
+
 .os-scrollbar {
   &.os-theme-custom {
     --os-size: #{rem(14)};
