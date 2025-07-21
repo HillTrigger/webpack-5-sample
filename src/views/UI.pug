@@ -1,0 +1,1202 @@
+extends ../partials/template/default
+
+block head
+	style.
+		.gui {
+			position: fixed;
+			background-color: var(--white);
+			padding: 0.5rem 1rem;
+			box-shadow: 0 0 1rem rgba(var(--black-rgb), 0.25);
+			z-index: 10;
+			right: 1rem;
+			bottom: 1rem;
+			border-radius: 0.25rem;
+		}
+
+		.sitemap-section .container>div>div:not(:last-child) {
+			margin-bottom: 2rem;
+		}
+
+		table {
+			width: 100%;
+			table-layout: fixed;
+		}
+
+		table:not(:last-child) {
+			margin-bottom: 2rem;
+		}
+
+		table td,
+		table th {
+			padding: 0.75rem;
+			vertical-align: top;
+		}
+
+		table td {
+			border: 0.1rem dashed var(--gray-100);
+		}
+
+		table td>div:not(:last-child) {
+			margin-bottom: 0.25rem;
+		}
+
+		table td>div .button {
+			width: 100%;
+			margin: 0;
+		}
+
+		table td>div .button-icon {
+			width: auto;
+		}
+
+		table td>.input-wrapper {
+			margin: 0;
+		}
+
+		table td>.dropdown {
+			margin: 0;
+		}
+
+		table td>.select {
+			margin: 0;
+		}
+
+		table td>.select.select--flat {
+			width: auto;
+		}
+
+
+block content
+	section.sitemap-section
+		.container
+			//- GUI
+			.gui
+				label.switcher.switcher--theme(data-tippy="Тема")
+					input.switcher__input(type="checkbox" data-theme-switcher)
+					.switcher__wrap
+						.switcher__custom-wrapper
+							.switcher__custom
+						p.switcher__text Тема
+			
+			div
+				//- Typography
+				div
+					h2(style="text-align: center") Typography
+
+					div(style="margin: 1.25rem")
+						h1.h1 Title H-1
+						h2.h2 Title H-2
+						h3.h3 Title H-3
+						h4.h4 Title H-4
+						h5.h5 Title H-5
+						h6.h6 Title H-6
+
+					div(style="margin: 1.25rem")
+						h1.h2 Title H-1 (H-2)
+						h2.h3 Title H-2 (H-3)
+						h3.h4 Title H-3 (H-4)
+						h4.h5 Title H-4 (H-5)
+						h5.h6 Title H-5 (H-6)
+						h6.h6 Title H-6 (H-6)
+
+				//- Buttons
+				div
+					h2(style="text-align:center") Buttons
+
+					table
+						caption
+							h3 Размер
+						thead
+							tr
+								th Здоровая
+								th Большая
+								th Средняя
+								th Стандартная
+								th Маленькая
+						tbody
+							tr
+								td
+									button.button.button--large(type="button")
+										+svg('arrow-right')
+										span Large button 64
+								td
+									button.button.button--big(type="button")
+										+svg('arrow-right')
+										span Big button 56
+								td
+									button.button.button--middle(type="button")
+										+svg('arrow-right')
+										span Middle button 48
+								td
+									button.button(type="button")
+										+svg('arrow-right')
+										span Small button 40
+								td
+									button.button.button--small(type="button")
+										+svg('arrow-right')
+										span Small button 32
+
+					table
+						caption
+							h3 Стили
+						thead
+							tr
+								th(width="15%") Стиль
+								th Стандартная
+								th Наведение
+								th Нажата
+								th Не активна
+						tbody
+							//- Solid button row
+							tr
+								td Solid button
+								td
+									div
+										button.button(type="button")
+											+svg('arrow-right')
+											span solid button 40
+									div
+										button.button.button-icon.button-icon--prev(type="button")
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--next(type="button")
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--prev.button-icon--circle(type="button")
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--next.button-icon--circle(type="button")
+											+svg('arrow-right')
+								td
+									div
+										button.button.hover(type="button")
+											+svg('arrow-right')
+											span solid button 40
+									div
+										button.button.button-icon.button-icon--prev.hover(type="button")
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--next.hover(type="button")
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--prev.button-icon--circle.hover(type="button")
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--next.button-icon--circle.hover(type="button")
+											+svg('arrow-right')
+								td
+									div
+										button.button.pressed(type="button")
+											+svg('arrow-right')
+											span solid button 40
+									div
+										button.button.button-icon.button-icon--prev.pressed(type="button")
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--next.pressed(type="button")
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--prev.button-icon--circle.pressed(type="button")
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--next.button-icon--circle.pressed(type="button")
+											+svg('arrow-right')
+								td
+									div
+										button.button(type="button" disabled)
+											+svg('arrow-right')
+											span solid button 40
+									div
+										button.button.button-icon.button-icon--prev(type="button" disabled)
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--next(type="button" disabled)
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--prev.button-icon--circle(type="button" disabled)
+											+svg('arrow-right')
+										button.button.button-icon.button-icon--next.button-icon--circle(type="button" disabled)
+											+svg('arrow-right')
+
+				//- inputs
+				div
+					h3(style="text-align: center") Inputs
+
+					table
+						thead
+							tr
+								th(width="15%") Состояния
+								th Тип 1
+								th Тип 2
+								th Тип 3
+						tbody
+							tr
+								td Стандартный
+								td
+									.input-wrapper
+										.input-container
+											input.input(type="text" placeholder="На счет")
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container
+											input.input(type="text" placeholder="На счет")
+											button.button.button-icon.button--flat-2.input-control.j_passwordToggler(type="button")
+												svg
+													use(xlink:href="svg/sprite.svg#eye-closed")
+												svg
+													use(xlink:href="svg/sprite.svg#eye")
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container
+											input.input.input--placeholder.j_mask(type="tel" placeholder="Телефон" data-inputmask="'mask': '+ 7(999) 999-99-99'")
+											span.input-placeholder Телефон
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container
+											textarea.textarea(rows="4" placeholder="Ваше сообщение")
+										label.input-label Ваше сообщение
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+
+							tr
+								td Неактивен
+								td
+									.input-wrapper
+										.input-container.disabled
+											input.input(type="text" placeholder="На счет" disabled)
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container.disabled
+											input.input(type="text" placeholder="На счет" disabled)
+											button.button.button-icon.button--flat-2.input-control.j_passwordToggler(type="button" disabled)
+												svg
+													use(xlink:href="svg/sprite.svg#eye-closed")
+												svg
+													use(xlink:href="svg/sprite.svg#eye")
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container.disabled
+											input.input.input--placeholder.j_mask(type="tel" placeholder="Телефон" data-inputmask="'mask': '+ 7(999) 999-99-99'" disabled value="908")
+											span.input-placeholder Телефон
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container.disabled
+											textarea.textarea(rows="4" placeholder="Ваше сообщение" disabled)
+										label.input-label Ваше сообщение
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+
+							tr
+								td Readonly
+								td
+									.input-wrapper
+										.input-container
+											input.input(type="text" placeholder="На счет" readonly)
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container
+											input.input(type="text" placeholder="На счет" readonly)
+											button.button.button-icon.button--flat-2.input-control.j_passwordToggler(type="button")
+												svg
+													use(xlink:href="svg/sprite.svg#eye-closed")
+												svg
+													use(xlink:href="svg/sprite.svg#eye")
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container
+											input.input.input--placeholder.j_mask(type="tel" placeholder="Телефон" data-inputmask="'mask': '+ 7(999) 999-99-99'" readonly value="908")
+											span.input-placeholder Телефон
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container
+											textarea.textarea(rows="4" placeholder="Ваше сообщение" readonly)
+										label.input-label Ваше сообщение
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+
+							tr
+								td Невалидный
+								td
+									.input-wrapper
+										.input-container.invalid
+											input.input(type="text" placeholder="На счет")
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container.invalid
+											input.input(type="text" placeholder="На счет")
+											button.button.button-icon.button--flat-2.input-control.j_passwordToggler(type="button")
+												svg
+													use(xlink:href="svg/sprite.svg#eye-closed")
+												svg
+													use(xlink:href="svg/sprite.svg#eye")
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container.invalid
+											input.input.input--placeholder.j_mask(type="tel" placeholder="Телефон" data-inputmask="'mask': '+ 7(999) 999-99-99'")
+											span.input-placeholder Телефон
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container.invalid
+											textarea.textarea(rows="4" placeholder="Ваше сообщение")
+										label.input-label Ваше сообщение
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+
+							tr
+								td Валидный
+								td
+									.input-wrapper
+										.input-container.valid
+											input.input(type="text" placeholder="На счет")
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container.valid
+											input.input(type="text" placeholder="На счет")
+											button.button.button-icon.button--flat-2.input-control.j_passwordToggler(type="button")
+												svg
+													use(xlink:href="svg/sprite.svg#eye-closed")
+												svg
+													use(xlink:href="svg/sprite.svg#eye")
+										label.input-label На счет
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container.valid
+											input.input.input--placeholder.j_mask(type="tel" placeholder="Телефон" data-inputmask="'mask': '+ 7(999) 999-99-99'")
+											span.input-placeholder Телефон
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+								td
+									.input-wrapper
+										.input-container.valid
+											textarea.textarea(rows="4" placeholder="Ваше сообщение")
+										label.input-label Ваше сообщение
+										p.input-message.input-message--valid Сообщение об успехе
+										p.input-message.input-message--invalid Сообщение об ошибке
+
+				//- checkbox/radio/switch
+				div
+					h3(style="text-align: center") Checkbox / Radio / Switch
+
+					table
+						thead
+							tr
+								th(width="15%") Состояния
+								th Тип 1
+								th Тип 2
+								th Тип 3
+						tbody
+							tr
+								td Стандартный
+
+								td
+									label.checkbox
+										input.checkbox__input(type="checkbox")
+										.checkbox__wrap
+											.checkbox__custom
+												svg.checkbox__icon
+													use(xlink:href="svg/sprite.svg#done")
+											p.checkbox__text
+												| Lorem 
+												a.checkbox__link(href="#") ipsum
+
+								td
+									label.radio
+										input.radio__input(type="radio", name="name1")
+										.radio__wrap
+											.radio__custom
+											p.radio__text
+												| Lorem 
+												a.radio__link(href="#") ipsum
+
+								td
+									label.switcher
+										input.switcher__input(type="checkbox")
+										.switcher__wrap
+											.switcher__custom-wrapper
+												.switcher__custom
+											p.switcher__text
+												| Lorem 
+												a.radio__link(href="#") ipsum
+
+							tr
+								td Неактивен
+
+								td
+									label.checkbox
+										input.checkbox__input(type="checkbox", disabled)
+										.checkbox__wrap
+											.checkbox__custom
+												svg.checkbox__icon
+													use(xlink:href="svg/sprite.svg#done")
+											p.checkbox__text
+												| Lorem 
+												a.checkbox__link(href="#") ipsum
+
+								td
+									label.radio
+										input.radio__input(type="radio", name="name3", disabled)
+										.radio__wrap
+											.radio__custom
+											p.radio__text
+												| Lorem 
+												a.radio__link(href="#") ipsum
+
+								td
+									label.switcher
+										input.switcher__input(type="checkbox", disabled)
+										.switcher__wrap
+											.switcher__custom-wrapper
+												.switcher__custom
+											p.switcher__text
+												| Lorem 
+												a.radio__link(href="#") ipsum
+
+							tr
+								td Вкл
+
+								td
+									label.checkbox
+										input.checkbox__input(type="checkbox", checked)
+										.checkbox__wrap
+											.checkbox__custom
+												svg.checkbox__icon
+													use(xlink:href="svg/sprite.svg#done")
+											p.checkbox__text
+												| Lorem 
+												a.checkbox__link(href="#") ipsum
+
+								td
+									label.radio
+										input.radio__input(type="radio", name="name2", checked)
+										.radio__wrap
+											.radio__custom
+											p.radio__text
+												| Lorem 
+												a.radio__link(href="#") ipsum
+
+								td
+									label.switcher
+										input.switcher__input(type="checkbox", checked)
+										.switcher__wrap
+											.switcher__custom-wrapper
+												.switcher__custom
+											p.switcher__text
+												| Lorem 
+												a.radio__link(href="#") ipsum
+
+							tr
+								td Неактивен Вкл
+
+								td
+									label.checkbox
+										input.checkbox__input(type="checkbox", disabled, checked)
+										.checkbox__wrap
+											.checkbox__custom
+												svg.checkbox__icon
+													use(xlink:href="svg/sprite.svg#done")
+											p.checkbox__text
+												| Lorem 
+												a.checkbox__link(href="#") ipsum
+
+								td
+									label.radio
+										input.radio__input(type="radio", name="name4", disabled, checked)
+										.radio__wrap
+											.radio__custom
+											p.radio__text
+												| Lorem 
+												a.radio__link(href="#") ipsum
+
+								td
+									label.switcher
+										input.switcher__input(type="checkbox", disabled, checked)
+										.switcher__wrap
+											.switcher__custom-wrapper
+												.switcher__custom
+											p.switcher__text
+												| Lorem 
+												a.radio__link(href="#") ipsum
+
+				//- Selects
+				div
+					h3(style="text-align:center") Selects
+					table
+						thead
+							tr
+								th(width="15%") Состояния
+								th Не выбрано
+								th Выбрано
+								th Не выбрано Неактивен
+								th Выбрано Неактивен
+						tbody
+							//- Стандартный
+							tr
+								td Стандартный
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder"}'
+										id="select-1" 
+										name="select-name-1" 
+										size="1"
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+										option(value="mouse") Mouse
+										option(value="crocodile") Crocodile
+										option(value="pig") Pig
+										option(value="bear") Bear
+										option(value="chicken") Chicken
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder"}'
+										id="select-2" 
+										name="select-name-2" 
+										size="1"
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+										option(value="mouse") Mouse
+										option(value="crocodile") Crocodile
+										option(value="pig") Pig
+										option(value="bear") Bear
+										option(value="chicken") Chicken
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder"}'
+										id="select-3" 
+										name="select-name-3" 
+										size="1" 
+										disabled
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+										option(value="mouse") Mouse
+										option(value="crocodile") Crocodile
+										option(value="pig") Pig
+										option(value="bear") Bear
+										option(value="chicken") Chicken
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder"}'
+										id="select-4" 
+										name="select-name-4" 
+										size="1" 
+										disabled
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+										option(value="mouse") Mouse
+										option(value="crocodile") Crocodile
+										option(value="pig") Pig
+										option(value="bear") Bear
+										option(value="chicken") Chicken
+
+							//- Множественный
+							tr
+								td Множественный
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "svgPath": "svg/sprite.svg", "startTags": -1}'
+										id="select-2_1" 
+										name="select-name-2_1" 
+										size="1" 
+										multiple
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "svgPath": "svg/sprite.svg", "startTags": -1}'
+										id="select-2_2" 
+										name="select-name-2_2" 
+										size="1" 
+										multiple
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "svgPath": "svg/sprite.svg", "startTags": -1}'
+										id="select-2_3" 
+										name="select-name-2_3" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "svgPath": "svg/sprite.svg", "startTags": -1}'
+										id="select-2_4" 
+										name="select-name-2_4" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+
+							//- С тегами
+							tr
+								td С тегами
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}}'
+										id="select-3_1" 
+										name="select-name-3_1" 
+										size="1" 
+										multiple
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}}'
+										id="select-3_2" 
+										name="select-name-3_2" 
+										size="1" 
+										multiple
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}}'
+										id="select-3_3" 
+										name="select-name-3_3" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}}'
+										id="select-3_4" 
+										name="select-name-3_4" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+
+							//- С поиском
+							tr
+								td С поиском
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": false}, "selectAllBtn": {"enabled": true}}'
+										id="select-4_1" 
+										name="select-name-4_1" 
+										size="1" 
+										multiple
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": false}, "selectAllBtn": {"enabled": true}}'
+										id="select-4_2" 
+										name="select-name-4_2" 
+										size="1" 
+										multiple
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": false}, "selectAllBtn": {"enabled": true}}'
+										id="select-4_3" 
+										name="select-name-4_3" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": false}, "selectAllBtn": {"enabled": true}}'
+										id="select-4_4" 
+										name="select-name-4_4" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+
+							//- С поиском внутри
+							tr
+								td С поиском внутри
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": true}, "selectAllBtn": {"enabled": true}}'
+										id="select-5_1" 
+										name="select-name-5_1" 
+										size="1" 
+										multiple
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": true}, "selectAllBtn": {"enabled": true}}'
+										id="select-5_2" 
+										name="select-name-5_2" 
+										size="1" 
+										multiple
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": true}, "selectAllBtn": {"enabled": true}}'
+										id="select-5_3" 
+										name="select-name-5_3" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": true}, "selectAllBtn": {"enabled": true}}'
+										id="select-5_4" 
+										name="select-name-5_4" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+
+							//- Кастомный с поиском внутри
+							tr
+								td Кастомный с поиском внутри
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "templateItem": "select-item-default", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": true}}'
+										id="select-6_1" 
+										name="select-name-6_1" 
+										size="1" 
+										multiple
+									)
+										option(
+											value="parrot" 
+											disabled 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-1", "2": "Parrot", "3": "Parrot text"}'
+										) Parrot
+										option(
+											value="macaw" 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-2", "2": "Macaw", "3": "Macaw text"}'
+										) Macaw
+										option(
+											value="albatross" 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-3", "2": "Albatross", "3": "Albatross text"}'
+										) Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "templateItem": "select-item-default", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": true}}'
+										id="select-6_2" 
+										name="select-name-6_2" 
+										size="1" 
+										multiple
+									)
+										option(
+											value="parrot" 
+											disabled 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-1", "2": "Parrot", "3": "Parrot text"}'
+										) Parrot
+										option(
+											value="macaw" 
+											selected 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-2", "2": "Macaw", "3": "Macaw text"}'
+										) Macaw
+										option(
+											value="albatross" 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-3", "2": "Albatross", "3": "Albatross text"}'
+										) Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "templateItem": "select-item-default", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": true}}'
+										id="select-6_3" 
+										name="select-name-6_3" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(
+											value="parrot" 
+											disabled 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-1", "2": "Parrot", "3": "Parrot text"}'
+										) Parrot
+										option(
+											value="macaw" 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-2", "2": "Macaw", "3": "Macaw text"}'
+										) Macaw
+										option(
+											value="albatross" 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-3", "2": "Albatross", "3": "Albatross text"}'
+										) Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "templateItem": "select-item-default", "search": {"enabled": true, "placeholder": "Search", "value": "", "inside": true}}'
+										id="select-6_4" 
+										name="select-name-6_4" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(
+											value="parrot" 
+											disabled 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-1", "2": "Parrot", "3": "Parrot text"}'
+										) Parrot
+										option(
+											value="macaw" 
+											selected 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-2", "2": "Macaw", "3": "Macaw text"}'
+										) Macaw
+										option(
+											value="albatross" 
+											data-option='{"0": "https://placehold.jp/40x40.png", "1": "option-icon-3", "2": "Albatross", "3": "Albatross text"}'
+										) Albatross
+
+							//- Множественный с счетчиком
+							tr
+								td Множественный с счетчиком
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "counter": true}'
+										id="select-7_1" 
+										name="select-name-7_1" 
+										size="1" 
+										multiple
+									)
+										option(value="parrot" disabled) Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "counter": true}'
+										id="select-7_2" 
+										name="select-name-7_2" 
+										size="1" 
+										multiple
+									)
+										option(value="parrot" disabled) Parrot
+										option(value="macaw" selected) Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "counter": true}'
+										id="select-7_3" 
+										name="select-name-7_3" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="parrot" disabled) Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "counter": true}'
+										id="select-7_4" 
+										name="select-name-7_4" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="parrot" disabled) Parrot
+										option(value="macaw" selected) Macaw
+										option(value="albatross") Albatross
+
+							//- Flat
+							tr
+								td Flat
+								td
+									select.button.button-select.select.button--flat(
+										data-select='{"mode": "flat", "placeholder": "Dropdown placeholder", "counter": true}'
+										id="select-8_1" 
+										name="select-name-8_1" 
+										size="1" 
+										multiple
+									)
+										option(value="parrot" disabled) Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select.button--flat(
+										data-select='{"mode": "flat", "placeholder": "Dropdown placeholder", "counter": true}'
+										id="select-8_2" 
+										name="select-name-8_2" 
+										size="1" 
+										multiple
+									)
+										option(value="parrot" disabled) Parrot
+										option(value="macaw" selected) Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select.button--flat(
+										data-select='{"mode": "flat", "placeholder": "Dropdown placeholder", "counter": true}'
+										id="select-8_3" 
+										name="select-name-8_3" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="parrot" disabled) Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select.button--flat(
+										data-select='{"mode": "flat", "placeholder": "Dropdown placeholder", "counter": true}'
+										id="select-8_4" 
+										name="select-name-8_4" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="parrot" disabled) Parrot
+										option(value="macaw" selected) Macaw
+										option(value="albatross") Albatross
+
+							//- С тегами + popper
+							tr
+								td С тегами + popper
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}, "popper": true}'
+										id="select-9_1" 
+										name="select-name-9_1" 
+										size="1" 
+										multiple
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}, "popper": true}'
+										id="select-9_2" 
+										name="select-name-9_2" 
+										size="1" 
+										multiple
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}, "popper": true}'
+										id="select-9_3" 
+										name="select-name-9_3" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+								td
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}, "popper": true}'
+										id="select-9_4" 
+										name="select-name-9_4" 
+										size="1" 
+										multiple 
+										disabled
+									)
+										option(value="dog" selected) Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster" selected) Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+
+							//- debug:true(в консоле)
+							tr
+								td debug:true(в консоле)
+								td
+									select.button.button-select.select(
+										data-select='{"debug": true, "placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}}'
+										id="select-10_1" 
+										name="select-name-10_1" 
+										size="1" 
+										multiple
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+
+							//- loading
+							tr
+								td loading
+								td(colspan="1")
+									select.button.button-select.select(
+										data-select='{"placeholder": "Dropdown placeholder", "selectAllBtn": {"enabled": true}}'
+										id="select-11_1" 
+										name="select-name-11_1" 
+										size="1" 
+										multiple
+									)
+										option(value="dog") Dog
+										option(value="cat" disabled) Cat
+										option(value="hamster") Hamster
+										option(value="parrot") Parrot
+										option(value="macaw") Macaw
+										option(value="albatross") Albatross
+									div(style="display:flex;gap:10px;margin:5px 0 0")
+										button.button.button--primary-2.button--small(id="set-loading-11_1")
+											span set loading
+										button.button.button--primary-2.button--small(id="unset-loading-11_1")
+											span unset loading
+									script.
+										const $select = document.querySelector('#select-11_1');
+										const $setBtn = document.querySelector('#set-loading-11_1');
+										const $unsetBtn = document.querySelector('#unset-loading-11_1');
+
+										$select.addEventListener(':init', ({ detail }) => {
+											$select.select.setLoading();
+
+											$setBtn.addEventListener(
+												'click',
+												$select.select.setLoading.bind($select.select, true)
+											);
+											$unsetBtn.addEventListener(
+												'click',
+												$select.select.setLoading.bind($select.select, false)
+											);
+										});
+
+					.select-template#select-item-default(style="display:none")
+						.select-template__img-wrapper
+							img.select-template__img(alt="" src="https://placehold.jp/40x40.png")
+						.select-template__wrap
+							span.select-template__title Parrot
+							p.select-template__text Parrot text
+
