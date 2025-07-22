@@ -14,15 +14,16 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
   return {
     mode: mode,
     optimization: {
+      runtimeChunk: 'single',  // обязательно для работы HMR вместе с несколькими entry
       minimize: min,
     },
     entry: paths.entry,
     output: {
       path: paths.output,
       filename: 'js/[name].js',
-			publicPath,
+      publicPath,
       clean: true,
-			chunkFilename: 'js/chunks/chunk_[name].js',
+      chunkFilename: 'js/chunks/chunk_[name].js',
     },
     plugins: buildPlugins(options),
     module: {

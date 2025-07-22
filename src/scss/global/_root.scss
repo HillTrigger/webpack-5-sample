@@ -3,8 +3,8 @@
 @include mixins.init-css-vars();
 
 :root {
-  --color-main: var(--white);
-  --bg-color-main: var(--black);
+  --color-main: var(--black);
+  --bg-color-main: var(--white);
   --desktop-point: 1920;
   --ps: calc(max(100vw, var(--desktop-point) * 1px) / var(--desktop-point));
 }

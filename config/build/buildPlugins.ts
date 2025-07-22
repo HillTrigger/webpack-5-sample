@@ -46,11 +46,6 @@ export function buildPlugins({
         minify: false, // Отключаем минификацию
       });
     }),
-    new MiniCssExtractPlugin({
-      // filename: 'css/bundle.css',
-      filename: 'css/[name].css',
-      chunkFilename: '[id].css',
-    }), // Нужен для добавления css в отдельные файлы
     new SpriteLoaderPlugin({ plainSprite: true }),
   ];
 
@@ -58,6 +53,14 @@ export function buildPlugins({
     plugins.push(new webpack.ProgressPlugin()); // Значительно влияет на время сборки
   }
   if (isProd) {
+    plugins.push(
+      new MiniCssExtractPlugin({
+        // Нужен для добавления css в отдельные файлы
+        // filename: 'css/bundle.css',
+        filename: 'css/[name].css',
+        chunkFilename: '[id].css',
+      })
+    );
     // plugins.push(new Plugin());
   }
   if (analyzer) {

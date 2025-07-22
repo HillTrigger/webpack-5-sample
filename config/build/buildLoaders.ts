@@ -19,14 +19,14 @@ export function buildLoaders(
   const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
-      MiniCssExtractPlugin.loader,
+      isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       'css-loader',
-      // threadLoader, // малоэффективен
+      // threadLoader,
       {
         loader: 'sass-loader',
-        // options: {
-        //   // additionalData: '@use "../../src/scss/global.scss" as *;',
-        // },
+        options: {
+          implementation: require('sass'),
+        },
       },
     ],
   };
@@ -83,20 +83,20 @@ export function buildLoaders(
       'svgo-loader', // опционально, для оптимизации SVG
     ],
   };
-  const svgLoader = {
-    test: /\.svg$/i,
-    type: 'asset/resource',
-    generator: {
-      filename: 'images/svg/[name][ext]',
-    },
-    include: [options.paths.src + 'img/svg/'],
-  };
+  // const svgLoader = {
+  //   test: /\.svg$/i,
+  //   type: 'asset/resource',
+  //   generator: {
+  //     filename: 'images/svg/[name][ext]',
+  //   },
+  //   include: [options.paths.src + 'img/svg/'],
+  // };
   const fontsLoader = {
     test: /\.(woff|woff2|eot|ttf|otf)$/i,
     type: 'asset/resource',
     generator: {
       filename: 'fonts/[name][ext]',
-      publicPath: '../fonts/', // путь от CSS до шрифтов
+      // publicPath: '../fonts/', // путь от CSS до шрифтов
     },
   };
 
