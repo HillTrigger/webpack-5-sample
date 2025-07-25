@@ -5,16 +5,16 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
   return {
     port: options.port || 8080,
     hot: true,
-    liveReload: false,
+    liveReload: true,
     open: true,
     compress: true,
     historyApiFallback: true,
-    // watchFiles: {
-    //   paths: ['src/views/*.pug', 'src/scss/**/*'],
-    //   options: {
-    //     usePolling: true,
-    //   },
-    // },
+    watchFiles: {
+      paths: ['src/views/*.pug'],
+      options: {
+        usePolling: true,
+      },
+    },
     // client: {
     //   logging: 'info',
     // },
