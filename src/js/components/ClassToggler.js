@@ -98,7 +98,7 @@ export default class ClassToggler {
 
   _dispatchEvent(eventName, detail, $el = this.$el) {
     const selectEvent = new CustomEvent(eventName, {
-      detail: detail,
+      detail,
     });
 
     $el.dispatchEvent(selectEvent);

@@ -141,8 +141,8 @@ export default class Accordion {
 
       // eslint-disable-next-line no-new
       new Accordion({
-        el: el,
-        id: id,
+        el,
+        id,
         triggerBtn: $triggerBtn,
         hiddenEl: $hiddenEl,
       });

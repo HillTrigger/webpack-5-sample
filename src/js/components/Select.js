@@ -692,7 +692,7 @@ export default class Select extends ClassToggler {
 
     this.update();
 
-    this._dispatchEvent(event, { key: key, selected: this._selected }, this.$select);
+    this._dispatchEvent(event, { key, selected: this._selected }, this.$select);
 
     return true;
   }
@@ -1035,9 +1035,9 @@ const defaults = {
     },
     selectAllBtn(option) {
       const text = option.text || '';
-      const key = option.value || '';
+      // const key = option.value || '';
       const checked = option.selected ? this.config.classes.checked : '';
-      const disabled = option.disabled ? this.config.classes.disabled : '';
+      // const disabled = option.disabled ? this.config.classes.disabled : '';
 
       return `
         <li class="select__item select__item--select-all">
@@ -1079,7 +1079,7 @@ const defaults = {
       const key = option.value || '';
       const checked = option.selected ? this.config.classes.checked : '';
       const disabled = option.disabled ? this.config.classes.disabled : '';
-      const isSelectAll = option.isSelectAll ? this.config.classes.disabled : '';
+      // const isSelectAll = option.isSelectAll ? this.config.classes.disabled : '';
 
       return `
         <li class="select__item">

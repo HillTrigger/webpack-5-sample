@@ -14,7 +14,7 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
   return {
     mode: mode,
     optimization: {
-      runtimeChunk: 'single',  // обязательно для работы HMR вместе с несколькими entry
+      runtimeChunk: isDev ? 'single' : undefined,  // обязательно для работы HMR вместе с несколькими entry
       minimize: min,
     },
     entry: paths.entry,
