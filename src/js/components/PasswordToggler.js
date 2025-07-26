@@ -35,7 +35,7 @@ export default class PasswordToggler {
     const $el = document.querySelector('.j_togglePassword');
 
     if ($el) {
-      const passwordToggler = new PasswordToggler($el);
+      new PasswordToggler($el);
     }
   }
 

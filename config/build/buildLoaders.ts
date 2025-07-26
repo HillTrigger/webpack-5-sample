@@ -4,7 +4,7 @@ import { BuildOptions } from './types/types';
 import path from 'path';
 
 export function buildLoaders(
-  options: BuildOptions
+  options: BuildOptions,
 ): webpack.ModuleOptions['rules'] {
   const isDev = options.mode === 'development';
   const threadLoader = {
@@ -21,7 +21,7 @@ export function buildLoaders(
     use: [
       isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
       'css-loader',
-      // threadLoader,
+      'postcss-loader',
       {
         loader: 'sass-loader',
         options: {

@@ -13,6 +13,6 @@ module.exports = {
   extends: ['standard', 'prettier'],
   rules: {
     'no-unused-vars': 'warn',
-    'no-undef': 'off',
+    'no-new': 'warn',
   },
 };
