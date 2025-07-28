@@ -12,7 +12,7 @@ module.exports = {
   },
   extends: ['standard', 'prettier'],
   rules: {
-    'no-unused-vars': 'warn',
-    'no-new': 'warn',
+    // 'no-unused-vars': 'warn',
+    'no-new': 'off',
   },
 };
