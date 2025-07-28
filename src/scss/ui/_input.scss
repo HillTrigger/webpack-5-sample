@@ -1,7 +1,7 @@
 @use '../utils/mixins' as *;
 @use '../variables/variables' as *;
 @use '../utils/functions' as *;
-@use "sass:list";
+@use 'sass:list';
 
 .input,
 .textarea {

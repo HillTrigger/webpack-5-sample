@@ -8,10 +8,18 @@ export default class ClassToggler {
     this.config = extend({}, defaults, ClassToggler.defaults, config);
 
     this.$el = $el;
-    this.$openBtns = [...document.querySelectorAll(this.config.selectors.openBtns)];
-    this.$closeBtns = [...document.querySelectorAll(this.config.selectors.closeBtns)];
-    this.$toggleBtns = [...document.querySelectorAll(this.config.selectors.toggleBtns)];
-    this.$additionalElements = [...document.querySelectorAll(this.config.selectors.additionalEls)];
+    this.$openBtns = [
+      ...document.querySelectorAll(this.config.selectors.openBtns),
+    ];
+    this.$closeBtns = [
+      ...document.querySelectorAll(this.config.selectors.closeBtns),
+    ];
+    this.$toggleBtns = [
+      ...document.querySelectorAll(this.config.selectors.toggleBtns),
+    ];
+    this.$additionalElements = [
+      ...document.querySelectorAll(this.config.selectors.additionalEls),
+    ];
 
     this.id = this.$el.id;
 
@@ -24,13 +32,19 @@ export default class ClassToggler {
 
   superInit() {
     // Bind toggle btns
-    this.$toggleBtns.forEach(($btn) => $btn.addEventListener('click', this.toggle.bind(this)));
+    this.$toggleBtns.forEach(($btn) =>
+      $btn.addEventListener('click', this.toggle.bind(this)),
+    );
 
     // bind open btns
-    this.$openBtns.forEach(($btn) => $btn.addEventListener('click', this.open.bind(this)));
+    this.$openBtns.forEach(($btn) =>
+      $btn.addEventListener('click', this.open.bind(this)),
+    );
 
     // bind close btns
-    this.$closeBtns.forEach(($btn) => $btn.addEventListener('click', this.close.bind(this)));
+    this.$closeBtns.forEach(($btn) =>
+      $btn.addEventListener('click', this.close.bind(this)),
+    );
 
     // bind close by document click
     if (this.config.closeOnDocumentClick) {
@@ -41,7 +55,9 @@ export default class ClassToggler {
   open(e) {
     this.$el.classList.add(this.config.classes.active);
 
-    this.$additionalElements.forEach(($el) => $el.classList.add(this.config.classes.active));
+    this.$additionalElements.forEach(($el) =>
+      $el.classList.add(this.config.classes.active),
+    );
 
     if (this.config.scrollLock) {
       disablePageScroll(this.$el);
@@ -55,7 +71,9 @@ export default class ClassToggler {
   close(e) {
     this.$el.classList.remove(this.config.classes.active);
 
-    this.$additionalElements.forEach(($el) => $el.classList.remove(this.config.classes.active));
+    this.$additionalElements.forEach(($el) =>
+      $el.classList.remove(this.config.classes.active),
+    );
 
     if (this.config.scrollLock) {
       enablePageScroll(this.$el);
@@ -87,7 +105,11 @@ export default class ClassToggler {
 
   _isTargetTriggerBtns(e) {
     // check, if e.target one of our btns (open, close or toggle);
-    const allTriggersBtns = [...this.$toggleBtns, ...this.$openBtns, ...this.$closeBtns];
+    const allTriggersBtns = [
+      ...this.$toggleBtns,
+      ...this.$openBtns,
+      ...this.$closeBtns,
+    ];
 
     for (const $btn of allTriggersBtns) {
       if (isDescendant($btn, e.target)) {

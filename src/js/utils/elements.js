@@ -107,7 +107,11 @@ export function emptyElement(element) {
 
 // Replace element
 export function replaceElement(newChild, oldChild) {
-  if (!is.element(oldChild) || !is.element(oldChild.parentNode) || !is.element(newChild))
+  if (
+    !is.element(oldChild) ||
+    !is.element(oldChild.parentNode) ||
+    !is.element(newChild)
+  )
     return null;
 
   oldChild.parentNode.replaceChild(newChild, oldChild);

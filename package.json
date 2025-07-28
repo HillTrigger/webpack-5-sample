@@ -6,7 +6,9 @@
   "scripts": {
     "build:dev": "webpack --env mode=development min=false",
     "build:prod": "webpack --env mode=production",
-    "start": "webpack serve --env mode=development --open"
+    "start": "webpack serve --env mode=development --open",
+    "lint:css": "stylelint src/**/*.scss",
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue,css,scss,sass,md,json}\""
   },
   "author": "",
   "license": "ISC",
@@ -39,6 +41,11 @@
     "sass": "^1.89.2",
     "sass-loader": "^16.0.5",
     "style-loader": "^4.0.0",
+    "stylelint": "^16.22.0",
+    "stylelint-config-standard": "^38.0.0",
+    "stylelint-prettier": "^5.0.3",
+    "stylelint-scss": "^6.12.1",
+    "stylelint-webpack-plugin": "^5.0.1",
     "svg-chunk-webpack-plugin": "^7.0.0",
     "svg-sprite-loader": "^6.0.11",
     "svgo-loader": "^4.0.0",

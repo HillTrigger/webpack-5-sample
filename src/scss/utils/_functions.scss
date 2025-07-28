@@ -1,9 +1,10 @@
-@use "sass:string";
-@use "sass:math";
-@use "sass:color";
+@use 'sass:string';
+@use 'sass:math';
+@use 'sass:color';
 
 @function hextorgb($hex) {
-  @return color.channel($hex, "red"), color.channel($hex, "green"), color.channel($hex, "blue");
+  @return color.channel($hex, 'red'), color.channel($hex, 'green'),
+    color.channel($hex, 'blue');
 }
 
 @function rem($px, $context: 16) {

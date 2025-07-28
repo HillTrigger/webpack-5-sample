@@ -45,7 +45,9 @@ export default class Scrollbar {
     this.$el = $el;
     this.config = Object.assign({}, defaultConfig, config);
     this.opts = this.config.options;
-    this._isOnlyDesktop = this.$el.hasAttribute(this.config.attributes.onlyDesktop);
+    this._isOnlyDesktop = this.$el.hasAttribute(
+      this.config.attributes.onlyDesktop,
+    );
 
     if (this._isOnlyDesktop && css.isMobile()) return false;
 
@@ -55,7 +57,9 @@ export default class Scrollbar {
   init() {
     this.instance = OverlayScrollbars(this.$el, this.opts);
 
-    this.instance.elements().padding.setAttribute(this.config.attributes.scrollLock, '');
+    this.instance
+      .elements()
+      .padding.setAttribute(this.config.attributes.scrollLock, '');
 
     // this.instance.elements().viewport.addEventListener('touchstart', function (e) {
     //   e.preventDefault();
@@ -65,7 +69,8 @@ export default class Scrollbar {
   }
 
   static init(selector = defaultConfig.selector, config = defaultConfig) {
-    const $el = selector instanceof Element ? selector : document.querySelector(selector);
+    const $el =
+      selector instanceof Element ? selector : document.querySelector(selector);
 
     return new Scrollbar($el, config);
   }

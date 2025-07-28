@@ -6,9 +6,11 @@ const getConstructor = (input) =>
   input !== null && typeof input !== 'undefined' ? input.constructor : null;
 const instanceOf = (input, constructor) =>
   Boolean(input && constructor && input instanceof constructor);
-const isNullOrUndefined = (input) => input === null || typeof input === 'undefined';
+const isNullOrUndefined = (input) =>
+  input === null || typeof input === 'undefined';
 const isObject = (input) => getConstructor(input) === Object;
-const isNumber = (input) => getConstructor(input) === Number && !Number.isNaN(input);
+const isNumber = (input) =>
+  getConstructor(input) === Number && !Number.isNaN(input);
 const isString = (input) => getConstructor(input) === String;
 const isBoolean = (input) => getConstructor(input) === Boolean;
 const isFunction = (input) => typeof input === 'function';
@@ -18,10 +20,13 @@ const isNodeList = (input) => instanceOf(input, NodeList);
 const isTextNode = (input) => getConstructor(input) === Text;
 const isEvent = (input) => instanceOf(input, Event);
 const isKeyboardEvent = (input) => instanceOf(input, KeyboardEvent);
-const isCue = (input) => instanceOf(input, window.TextTrackCue) || instanceOf(input, window.VTTCue);
+const isCue = (input) =>
+  instanceOf(input, window.TextTrackCue) || instanceOf(input, window.VTTCue);
 const isTrack = (input) =>
-  instanceOf(input, TextTrack) || (!isNullOrUndefined(input) && isString(input.kind));
-const isPromise = (input) => instanceOf(input, Promise) && isFunction(input.then);
+  instanceOf(input, TextTrack) ||
+  (!isNullOrUndefined(input) && isString(input.kind));
+const isPromise = (input) =>
+  instanceOf(input, Promise) && isFunction(input.then);
 
 const isElement = (input) =>
   input !== null &&

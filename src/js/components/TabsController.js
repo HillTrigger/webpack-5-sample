@@ -9,21 +9,24 @@ export default class TabsController {
     this.id = this.$tabsContainer.getAttribute(this.attrs.tabsContainer);
 
     this.$contentsContainer = document.querySelector(
-      `[${this.attrs.contentsContainer}="${this.id}"]`
+      `[${this.attrs.contentsContainer}="${this.id}"]`,
     );
 
     if (!this.$contentsContainer) return false;
 
-    this.$tabs = [...this.$tabsContainer.querySelectorAll(`[${this.attrs.tab}]`)];
+    this.$tabs = [
+      ...this.$tabsContainer.querySelectorAll(`[${this.attrs.tab}]`),
+    ];
     this.$contents = this._getContents();
 
     this.map = this._getMap();
 
     this.$activeOnLoadTab = this.$tabs.find(($trigger) =>
-      $trigger.classList.contains(this.config.classes.active)
+      $trigger.classList.contains(this.config.classes.active),
     );
 
-    this.activeOnLoadId = this._getTabId(this.$activeOnLoadTab) || this._getTabId(this.$tabs[0]);
+    this.activeOnLoadId =
+      this._getTabId(this.$activeOnLoadTab) || this._getTabId(this.$tabs[0]);
 
     this._prevId = null;
     this._activeId = null;
@@ -72,10 +75,12 @@ export default class TabsController {
     return new Map(
       this.$tabs.map(($tab) => {
         const id = this._getTabId($tab);
-        const $content = this.$contents.find(($content) => this._getContentId($content) === id);
+        const $content = this.$contents.find(
+          ($content) => this._getContentId($content) === id,
+        );
 
         return [id, { $tab, $content }];
-      })
+      }),
     );
   }
 
@@ -83,7 +88,9 @@ export default class TabsController {
     return (this.$contents = [
       ...this.$contentsContainer.querySelectorAll(`[${this.attrs.content}]`),
     ].filter(($content) => {
-      const $contentsContainer = $content.closest(`[${this.config.attributes.contentsContainer}]`);
+      const $contentsContainer = $content.closest(
+        `[${this.config.attributes.contentsContainer}]`,
+      );
       return $contentsContainer === this.$contentsContainer;
     }));
   }
@@ -123,9 +130,13 @@ export default class TabsController {
   }
 
   static initAll() {
-    const $tabsContainers = document.querySelectorAll(`[${defaults.attributes.tabsContainer}]`);
+    const $tabsContainers = document.querySelectorAll(
+      `[${defaults.attributes.tabsContainer}]`,
+    );
 
-    return [...$tabsContainers].map(($tabsContainer) => new TabsController($tabsContainer));
+    return [...$tabsContainers].map(
+      ($tabsContainer) => new TabsController($tabsContainer),
+    );
   }
 }
 

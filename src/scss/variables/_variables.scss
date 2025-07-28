@@ -14,7 +14,9 @@ $breakpoint-xxs: rem(320);
 $container-max-width-native: 108.75rem;
 $container-padding-native: 1.25rem;
 $container-padding-mobile-native: rem(16);
-$container-max-width: calc(#{$container-max-width-native} + (2 * #{$container-padding-native}));
+$container-max-width: calc(
+  #{$container-max-width-native} + (2 * #{$container-padding-native})
+);
 $container-padding: 0 $container-padding-native;
 
 /* Section */

@@ -18,7 +18,7 @@ export default class Modal extends ClassToggler {
           console.error(_, $el);
           return {};
         }
-      })()
+      })(),
     );
 
     super($el, config);
@@ -31,7 +31,9 @@ export default class Modal extends ClassToggler {
 
   superInit() {
     this.$openBtns = [
-      ...document.querySelectorAll(this.config.selectors.openBtns.replace('$0', this.id)),
+      ...document.querySelectorAll(
+        this.config.selectors.openBtns.replace('$0', this.id),
+      ),
     ];
 
     super.superInit();
@@ -130,7 +132,9 @@ export default class Modal extends ClassToggler {
   }
 
   static getMaxZIndex() {
-    const zIndexArray = Object.keys(_instances).map((key) => _instances[key]._zIndex);
+    const zIndexArray = Object.keys(_instances).map(
+      (key) => _instances[key]._zIndex,
+    );
 
     return Math.max(...zIndexArray);
   }

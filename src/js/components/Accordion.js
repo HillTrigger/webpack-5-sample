@@ -11,7 +11,10 @@ export default class Accordion {
     this.$triggerBtn = options.triggerBtn;
     this.$hiddenEl = options.hiddenEl;
     // eslint-disable-next-line no-undef
-    this.maxHeightHiddenEl = getComputedStyle(this.$hiddenEl).maxHeight.replace(/[^\d]/g, '');
+    this.maxHeightHiddenEl = getComputedStyle(this.$hiddenEl).maxHeight.replace(
+      /[^\d]/g,
+      '',
+    );
 
     this.mutationConfig = {
       childList: true,
@@ -24,7 +27,9 @@ export default class Accordion {
     this._isTypeCheckbox = this.$el.hasAttribute('data-accordion-checkbox');
 
     if (!this._isOpenOnLoad && this._isTypeCheckbox) {
-      this._isOpenOnLoad = this.$triggerBtn.querySelector('input[type="checkbox"]:checked');
+      this._isOpenOnLoad = this.$triggerBtn.querySelector(
+        'input[type="checkbox"]:checked',
+      );
     }
 
     this.$linkedParent = this.$el.closest('[data-linked-accordions]');
@@ -69,7 +74,10 @@ export default class Accordion {
       }
     });
 
-    window.addEventListener('resize', () => this._isOpen && this.updateHeight());
+    window.addEventListener(
+      'resize',
+      () => this._isOpen && this.updateHeight(),
+    );
 
     // eslint-disable-next-line no-undef
     this.mutationObserver = new MutationObserver(this.updateHeight.bind(this));
@@ -109,7 +117,9 @@ export default class Accordion {
     this.$hiddenEl.style.maxHeight = '';
 
     if (!isEventObs && this._isTypeCheckbox) {
-      const $checkbox = this.$triggerBtn.querySelector('input[type="checkbox"]');
+      const $checkbox = this.$triggerBtn.querySelector(
+        'input[type="checkbox"]',
+      );
       setTimeout(() => {
         if (!$checkbox.checked) {
           const unlockInstances = Accordion.getUnlockInstances();

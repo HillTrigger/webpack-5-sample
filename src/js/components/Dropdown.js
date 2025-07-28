@@ -20,7 +20,7 @@ export default class Dropdown extends ClassToggler {
           console.error(_, $el);
           return {};
         }
-      })()
+      })(),
     );
 
     super($el, config);
@@ -29,9 +29,15 @@ export default class Dropdown extends ClassToggler {
   superInit() {
     this.popper = null;
 
-    this.$toggleBtns = [...this.$el.querySelectorAll(this.config.selectors.toggleBtns)];
-    this.$openBtns = [...this.$el.querySelectorAll(this.config.selectors.openBtns)];
-    this.$closeBtns = [...this.$el.querySelectorAll(this.config.selectors.closeBtns)];
+    this.$toggleBtns = [
+      ...this.$el.querySelectorAll(this.config.selectors.toggleBtns),
+    ];
+    this.$openBtns = [
+      ...this.$el.querySelectorAll(this.config.selectors.openBtns),
+    ];
+    this.$closeBtns = [
+      ...this.$el.querySelectorAll(this.config.selectors.closeBtns),
+    ];
     this.$content = this.$el.querySelector(this.config.selectors.content);
     this.$popper = null;
 
@@ -56,18 +62,24 @@ export default class Dropdown extends ClassToggler {
 
     this._setOffsetPopperIfNeed();
 
-    this.popper = createPopper(this.$el.firstElementChild, this.$popper, this.config.popperOptions);
+    this.popper = createPopper(
+      this.$el.firstElementChild,
+      this.$popper,
+      this.config.popperOptions,
+    );
 
     window.addEventListener('load', this.popper.update.bind(this));
   }
 
   _setOffsetPopperIfNeed() {
     const offsetPopperObj = this.config.popperOptions.modifiers.find(
-      (obj) => obj.name === 'offset'
+      (obj) => obj.name === 'offset',
     );
 
     if (offsetPopperObj?.options?.offset === 'css') {
-      const top = css.style(this.$content, 'top') - this.$el.firstElementChild.offsetHeight;
+      const top =
+        css.style(this.$content, 'top') -
+        this.$el.firstElementChild.offsetHeight;
       const left = css.style(this.$content, 'left');
 
       offsetPopperObj.options.offset = [left, top];

@@ -35,7 +35,7 @@ export default class Select extends ClassToggler {
           console.error(_, $el);
           return {};
         }
-      })()
+      })(),
     );
 
     super($el, config);
@@ -52,9 +52,13 @@ export default class Select extends ClassToggler {
 
     this.renderTemplate();
 
-    this.$toggleBtns = this.$el.querySelectorAll(this.config.selectors.toggleBtns);
+    this.$toggleBtns = this.$el.querySelectorAll(
+      this.config.selectors.toggleBtns,
+    );
     this.$openBtns = this.$el.querySelectorAll(this.config.selectors.openBtns);
-    this.$closeBtns = this.$el.querySelectorAll(this.config.selectors.closeBtns);
+    this.$closeBtns = this.$el.querySelectorAll(
+      this.config.selectors.closeBtns,
+    );
 
     super.superInit();
 
@@ -85,19 +89,27 @@ export default class Select extends ClassToggler {
 
   initOptions() {
     this.$title = this.$el.querySelector(this.config.selectors.title);
-    this.$tagsContainer = this.$el.querySelector(this.config.selectors.tagsContainer);
-    this.$templateTitle = this.$el.querySelector(this.config.selectors.templateTitle);
+    this.$tagsContainer = this.$el.querySelector(
+      this.config.selectors.tagsContainer,
+    );
+    this.$templateTitle = this.$el.querySelector(
+      this.config.selectors.templateTitle,
+    );
     this.$counter = this.$el.querySelector(this.config.selectors.counter);
     this.$content = this.$el.querySelector(this.config.selectors.content);
     this.$list = this.$el.querySelector(this.config.selectors.list);
     this.$options = [
       ...this.$list.querySelectorAll(
-        `${this.config.selectors.option}:not(${this.config.selectors.selectAllBtn})`
+        `${this.config.selectors.option}:not(${this.config.selectors.selectAllBtn})`,
       ),
     ];
-    this.options = new Map(this.$options.map(($option) => [$option.dataset.key, $option]));
+    this.options = new Map(
+      this.$options.map(($option) => [$option.dataset.key, $option]),
+    );
     this.$search = this.$el.querySelector(this.config.selectors.search);
-    this.$selectAllBtn = this.$list.querySelector(this.config.selectors.selectAllBtn);
+    this.$selectAllBtn = this.$list.querySelector(
+      this.config.selectors.selectAllBtn,
+    );
 
     this._isMultiple = this.$select.multiple;
     this._isDisabled = this.$select.disabled;
@@ -109,13 +121,28 @@ export default class Select extends ClassToggler {
   initHandlers() {
     this.$list.addEventListener('click', this.onClick.bind(this));
     this.$tagsContainer.addEventListener('click', this.tagHandler.bind(this));
-    this.$select.addEventListener('change', this.onChangeSelectNative.bind(this));
+    this.$select.addEventListener(
+      'change',
+      this.onChangeSelectNative.bind(this),
+    );
 
     if (this.config.debug) {
-      this.$select.addEventListener(this.config.events.init, this.onInit.bind(this));
-      this.$select.addEventListener(this.config.events.select, this.onSelect.bind(this));
-      this.$select.addEventListener(this.config.events.unselect, this.onUnselect.bind(this));
-      this.$select.addEventListener(this.config.events.reset, this.onReset.bind(this));
+      this.$select.addEventListener(
+        this.config.events.init,
+        this.onInit.bind(this),
+      );
+      this.$select.addEventListener(
+        this.config.events.select,
+        this.onSelect.bind(this),
+      );
+      this.$select.addEventListener(
+        this.config.events.unselect,
+        this.onUnselect.bind(this),
+      );
+      this.$select.addEventListener(
+        this.config.events.reset,
+        this.onReset.bind(this),
+      );
     }
   }
 
@@ -138,18 +165,24 @@ export default class Select extends ClassToggler {
 
     this._setOffsetPopperIfNeed();
 
-    this.popper = createPopper(this.$el.firstElementChild, this.$popper, this.config.popperOptions);
+    this.popper = createPopper(
+      this.$el.firstElementChild,
+      this.$popper,
+      this.config.popperOptions,
+    );
 
     window.addEventListener('load', this.popper.update.bind(this));
   }
 
   _setOffsetPopperIfNeed() {
     const offsetPopperObj = this.config.popperOptions.modifiers.find(
-      (obj) => obj.name === 'offset'
+      (obj) => obj.name === 'offset',
     );
 
     if (offsetPopperObj?.options?.offset === 'css') {
-      const top = css.style(this.$content, 'top') - this.$el.firstElementChild.offsetHeight;
+      const top =
+        css.style(this.$content, 'top') -
+        this.$el.firstElementChild.offsetHeight;
       const left = css.style(this.$content, 'left');
 
       offsetPopperObj.options.offset = [+left, top];
@@ -236,7 +269,7 @@ export default class Select extends ClassToggler {
 
         return acc;
       },
-      [[], []]
+      [[], []],
     );
 
     if (optionsArray[0].length === optionsArray[1].length) {
@@ -257,7 +290,7 @@ export default class Select extends ClassToggler {
   updateSelectAllBtn() {
     if (this.config.selectAllBtn.enabled) {
       const notDisabledOptions = [...this.options].filter(
-        (option) => !option[1].classList.contains(this.config.classes.disabled)
+        (option) => !option[1].classList.contains(this.config.classes.disabled),
       );
       const $buttonText = this.$selectAllBtn.querySelector('.checkbox__text');
 
@@ -292,7 +325,9 @@ export default class Select extends ClassToggler {
     this.$el.classList.remove(this.config.classes.tags);
     this.$el.classList.remove(this.config.classes.template);
 
-    [...this.$openBtns, ...this.$toggleBtns].forEach(($btn) => $btn.removeAttribute('tabindex'));
+    [...this.$openBtns, ...this.$toggleBtns].forEach(($btn) =>
+      $btn.removeAttribute('tabindex'),
+    );
   }
 
   checkStates() {
@@ -308,7 +343,10 @@ export default class Select extends ClassToggler {
       if (this.config.counter && this._selected.length > 0) {
         this.$el.classList.add(this.config.classes.counter);
       } else {
-        if (this.config.startTags >= 0 && this._selected.length > this.config.startTags) {
+        if (
+          this.config.startTags >= 0 &&
+          this._selected.length > this.config.startTags
+        ) {
           this.$el.classList.add(this.config.classes.tags);
         } else {
           if (
@@ -321,7 +359,11 @@ export default class Select extends ClassToggler {
         }
       }
     } else {
-      if (this._selected.length > 0 && this.config.templateItem && this.config.isTemplateTitle) {
+      if (
+        this._selected.length > 0 &&
+        this.config.templateItem &&
+        this.config.isTemplateTitle
+      ) {
         this.$el.classList.add(this.config.classes.template);
       }
     }
@@ -332,7 +374,7 @@ export default class Select extends ClassToggler {
 
     if (this._isDisabled) {
       [...this.$openBtns, ...this.$toggleBtns].forEach(($btn) =>
-        $btn.setAttribute('tabindex', '-1')
+        $btn.setAttribute('tabindex', '-1'),
       );
     }
   }
@@ -352,7 +394,10 @@ export default class Select extends ClassToggler {
           return;
         }
 
-        if (this.config.startTags >= 0 && this._selected.length > this.config.startTags) {
+        if (
+          this.config.startTags >= 0 &&
+          this._selected.length > this.config.startTags
+        ) {
           this.setTagsTitle();
         } else {
           if (this.config.templateItem && this.config.isTemplateTitle) {
@@ -445,7 +490,7 @@ export default class Select extends ClassToggler {
     let counter = -1;
     let title = '';
     const firstSelectedOption = Array.from(this.options.values()).find((item) =>
-      item.classList.contains(this.config.classes.checked)
+      item.classList.contains(this.config.classes.checked),
     );
     if (firstSelectedOption) {
       title = firstSelectedOption.dataset.text;
@@ -492,7 +537,7 @@ export default class Select extends ClassToggler {
     }
 
     const selected = [...this.$el.options].find(
-      (option) => option.selected && !option.hasAttribute('selected')
+      (option) => option.selected && !option.hasAttribute('selected'),
     );
 
     if (selected) {
@@ -510,16 +555,21 @@ export default class Select extends ClassToggler {
         let optionsHTML = '';
 
         Array.from(child.children).forEach(
-          (option) => (optionsHTML += this.config.templates.option.call(this, option))
+          (option) =>
+            (optionsHTML += this.config.templates.option.call(this, option)),
         );
 
         if (!this.config.tabs) {
-          layoutHTML += this.config.templates.optgroup.call(this, child.label, optionsHTML);
+          layoutHTML += this.config.templates.optgroup.call(
+            this,
+            child.label,
+            optionsHTML,
+          );
         } else {
           tabButtons += this.config.templates.tabButton.call(
             this,
             child.label,
-            `${this.$el.id}-${index}`
+            `${this.$el.id}-${index}`,
           );
         }
       } else {
@@ -535,7 +585,11 @@ export default class Select extends ClassToggler {
 
     let layout;
     if (this.config.isWide) {
-      layout = this.config.templates.wideLayout.call(this, layoutHTML, tabButtons);
+      layout = this.config.templates.wideLayout.call(
+        this,
+        layoutHTML,
+        tabButtons,
+      );
     } else {
       layout = this.config.templates.layout.call(this, layoutHTML, tabButtons);
     }
@@ -547,7 +601,10 @@ export default class Select extends ClassToggler {
     this.$select = this.$el.parentNode.removeChild(this.$el.previousSibling);
     this.$selectOptions = [...this.$select.options];
     this.removeAttributesInSelect();
-    this.$el.firstElementChild.insertAdjacentElement('beforebegin', this.$select);
+    this.$el.firstElementChild.insertAdjacentElement(
+      'beforebegin',
+      this.$select,
+    );
   }
 
   selectStateAll() {
@@ -577,8 +634,11 @@ export default class Select extends ClassToggler {
 
       if (condition) {
         option.classList[event](this.config.classes.checked);
-        !this._isMultiple && this.$selectOptions.forEach((option) => (option.selected = false));
-        const $option = this.$selectOptions.find((option) => option.value === key);
+        !this._isMultiple &&
+          this.$selectOptions.forEach((option) => (option.selected = false));
+        const $option = this.$selectOptions.find(
+          (option) => option.value === key,
+        );
         $option.selected = flag;
       } else {
         return false;
@@ -591,24 +651,30 @@ export default class Select extends ClassToggler {
   }
 
   hideItem($option) {
-    const isItemGroup = $option.closest(this.config.selectors.itemGroup) === $option;
+    const isItemGroup =
+      $option.closest(this.config.selectors.itemGroup) === $option;
 
     if (isItemGroup) {
       $option.classList.add(this.config.classes.hidden);
     } else {
-      $option.closest(this.config.selectors.item).classList.add(this.config.classes.hidden);
+      $option
+        .closest(this.config.selectors.item)
+        .classList.add(this.config.classes.hidden);
 
       this.checkEmptyItemGroup();
     }
   }
 
   showItem($option) {
-    const isItemGroup = $option.closest(this.config.selectors.itemGroup) === $option;
+    const isItemGroup =
+      $option.closest(this.config.selectors.itemGroup) === $option;
 
     if (isItemGroup) {
       $option.classList.remove(this.config.classes.hidden);
     } else {
-      $option.closest(this.config.selectors.item).classList.remove(this.config.classes.hidden);
+      $option
+        .closest(this.config.selectors.item)
+        .classList.remove(this.config.classes.hidden);
 
       this.checkEmptyItemGroup();
     }
@@ -623,12 +689,16 @@ export default class Select extends ClassToggler {
   }
 
   checkEmptyItemGroup() {
-    const $itemGroups = this.$el.querySelectorAll(this.config.selectors.itemGroup);
+    const $itemGroups = this.$el.querySelectorAll(
+      this.config.selectors.itemGroup,
+    );
 
     $itemGroups.forEach(($itemGroup) => {
-      const $items = [...$itemGroup.querySelectorAll(this.config.selectors.item)];
+      const $items = [
+        ...$itemGroup.querySelectorAll(this.config.selectors.item),
+      ];
       const $visibleItems = $items.filter(
-        ($item) => !$item.classList.contains(this.config.classes.hidden)
+        ($item) => !$item.classList.contains(this.config.classes.hidden),
       );
 
       if (!$visibleItems.length) {
@@ -667,7 +737,9 @@ export default class Select extends ClassToggler {
   }
 
   select(key, flag = true) {
-    const event = flag ? this.config.events.select : this.config.events.unselect;
+    const event = flag
+      ? this.config.events.select
+      : this.config.events.unselect;
 
     if (this._isMultiple) {
       if (Array.isArray(key)) {
@@ -682,7 +754,10 @@ export default class Select extends ClassToggler {
     } else {
       const option = this.options.get(key);
 
-      if (this.options.has(key) && !option.classList.contains(this.config.classes.checked)) {
+      if (
+        this.options.has(key) &&
+        !option.classList.contains(this.config.classes.checked)
+      ) {
         this.unselectStateAll();
       }
 
@@ -945,7 +1020,8 @@ const defaults = {
         let optionsHTML = '';
 
         Array.from(optgroup.children).forEach(
-          (option) => (optionsHTML += this.config.templates.option.call(this, option))
+          (option) =>
+            (optionsHTML += this.config.templates.option.call(this, option)),
         );
         tabContents += `<div class="tab-content" data-tab-content="${this.$el.id}-${index}">${optionsHTML}</div>`;
       });
@@ -1109,7 +1185,10 @@ const defaults = {
       const template = document.getElementById(this.config.templateItem);
 
       if (!template) {
-        this._throwError(errors.notFound.templateItem, this.config.templateItem);
+        this._throwError(
+          errors.notFound.templateItem,
+          this.config.templateItem,
+        );
       }
 
       const clone = template && template.cloneNode(true);
@@ -1122,7 +1201,7 @@ const defaults = {
             console.error(_, option);
             return {};
           }
-        })()
+        })(),
       );
 
       clone.removeAttribute('id');
