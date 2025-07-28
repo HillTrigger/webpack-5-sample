@@ -1,11 +1,12 @@
 module.exports = {
-  extends: ['stylelint-config-standard', 'stylelint-config-prettier'],
+  extends: [
+    'stylelint-config-standard',
+    'stylelint-prettier/recommended',
+    'stylelint-config-recommended-scss',
+  ],
   plugins: ['stylelint-scss', 'stylelint-prettier'],
   customSyntax: 'postcss-scss',
   rules: {
-    'prettier/prettier': true,
-    indentation: 2,
-    'string-quotes': 'single',
     'at-rule-no-unknown': null,
     'no-descending-specificity': null,
     'at-rule-empty-line-before': [
@@ -16,6 +17,9 @@ module.exports = {
         ignoreAtRules: ['else'],
       },
     ],
+    'selector-class-pattern':
+      '^[a-z0-9]+(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?$',
+
     'scss/dollar-variable-colon-space-after': 'always',
     'scss/dollar-variable-colon-space-before': 'never',
     'scss/dollar-variable-no-missing-interpolation': true,
