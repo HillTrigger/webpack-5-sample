@@ -12,13 +12,12 @@
   height: var(--vh, 100vh);
   padding: 1.25rem;
   overflow: auto;
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden auto;
   font-size: 0;
   text-align: center;
   white-space: nowrap;
   visibility: hidden;
-  background-color: rgba(var(--black-rgb), 0.5);
+  background-color: rgb(var(--black-rgb), 0.5);
   opacity: 0;
   transition-timing-function: $transition-timing-function;
   transition-duration: $transition-duration;

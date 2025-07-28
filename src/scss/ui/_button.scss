@@ -56,9 +56,7 @@ button {
   border-style: solid;
   border-width: var(--border-width);
   border-radius: var(--border-radius);
-  outline-width: rem(2);
-  outline-style: solid;
-  outline-color: transparent;
+  outline: transparent solid rem(2);
   outline-offset: rem(2);
   box-shadow: var(--box-shadow);
   transition-timing-function: $transition-timing-function;
@@ -120,7 +118,7 @@ button {
     height: 1em;
     min-height: 1em;
     font-size: var(--icon-size);
-    fill: currentColor;
+    fill: currentcolor;
     transition-timing-function: $transition-timing-function;
     transition-duration: $transition-duration;
     transition-property: fill, transform;

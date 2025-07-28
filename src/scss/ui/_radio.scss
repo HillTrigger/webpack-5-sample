@@ -130,9 +130,9 @@
       width: 1em;
       height: 1em;
       font-size: var(--icon-size);
-      color: currentColor;
+      color: currentcolor;
       content: '';
-      background-color: currentColor;
+      background-color: currentcolor;
       border-radius: 50%;
       transform: translate(-50%, -50%);
     }
@@ -145,7 +145,7 @@
     font-size: $radio-font-size;
     font-weight: $radio-font-weight;
     line-height: $radio-line-height;
-    color: currentColor;
+    color: currentcolor;
 
     b {
       font-weight: bold;

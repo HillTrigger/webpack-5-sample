@@ -24,7 +24,7 @@
   color: inherit;
   background-color: var(--white);
   border-radius: $border-radius;
-  box-shadow: 0 0 rem(10) rgba(var(--black-rgb), 0.25);
+  box-shadow: 0 0 rem(10) rgb(var(--black-rgb), 0.25);
 }
 
 .tippy-content {

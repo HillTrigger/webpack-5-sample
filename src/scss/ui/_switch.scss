@@ -143,7 +143,7 @@
     margin: $checkbox-custom-margin;
     font-size: var(--size);
     color: var(--color);
-    background-color: currentColor;
+    background-color: currentcolor;
     border-color: var(--border-color);
     border-style: solid;
     border-width: rem(1);
@@ -172,7 +172,7 @@
 
   &__icon {
     font-size: var(--icon-size);
-    color: currentColor;
+    color: currentcolor;
   }
 
   &__svg {

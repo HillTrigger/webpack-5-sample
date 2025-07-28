@@ -21,7 +21,7 @@
       margin-right: calc(-1 * var(--border-width));
     }
 
-    &:not(:first-child):not(:last-child) {
+    &:not(:first-child, :last-child) {
       --border-radius: 0;
     }
 

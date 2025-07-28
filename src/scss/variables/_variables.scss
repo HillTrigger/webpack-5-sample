@@ -39,8 +39,8 @@ $main-font: $font, $font-fallback;
 $transition-duration: 0.2s;
 $transition-timing-function: ease;
 $border-radius: rem(4);
-$primary-shadow: 0 0 rem(20) rgba(var(--black-rgb), 0.25);
-$primary-shadow-2: 0 0 rem(12) rgba(var(--black-rgb), 0.1);
+$primary-shadow: 0 0 rem(20) rgb(var(--black-rgb), 0.25);
+$primary-shadow-2: 0 0 rem(12) rgb(var(--black-rgb), 0.1);
 
 /* Typography */
 // h1
@@ -50,7 +50,7 @@ $h1-font-size-sm: 1.875rem;
 $h1-font-weight: bold;
 $h1-line-height: 1.3;
 $h1-line-height-sm: 1.3;
-$h1-color: currentColor;
+$h1-color: currentcolor;
 $h1-margin: 0 0 1.75rem;
 
 // h2
@@ -60,7 +60,7 @@ $h2-font-size-sm: 1.875rem;
 $h2-font-weight: bold;
 $h2-line-height: 1.3;
 $h2-line-height-sm: 1.3;
-$h2-color: currentColor;
+$h2-color: currentcolor;
 $h2-margin: 0 0 1.5rem;
 
 // h3
@@ -70,7 +70,7 @@ $h3-font-size-sm: 1.4375rem;
 $h3-font-weight: bold;
 $h3-line-height: 1.3;
 $h3-line-height-sm: 1.3;
-$h3-color: currentColor;
+$h3-color: currentcolor;
 $h3-margin: 0 0 1.25rem;
 
 // h4
@@ -80,7 +80,7 @@ $h4-font-size-sm: 1.25rem;
 $h4-font-weight: bold;
 $h4-line-height: 1.3;
 $h4-line-height-sm: 1.3;
-$h4-color: currentColor;
+$h4-color: currentcolor;
 $h4-margin: 0 0 1rem;
 
 // h5
@@ -90,7 +90,7 @@ $h5-font-size-sm: 1.125rem;
 $h5-font-weight: bold;
 $h5-line-height: 1.3;
 $h5-line-height-sm: 1.3;
-$h5-color: currentColor;
+$h5-color: currentcolor;
 $h5-margin: 0 0 0.75rem;
 
 // h6
@@ -100,7 +100,7 @@ $h6-font-size-sm: 1rem;
 $h6-font-weight: bold;
 $h6-line-height: 1.3;
 $h6-line-height-sm: 1.3;
-$h6-color: currentColor;
+$h6-color: currentcolor;
 $h6-margin: 0 0 0.5rem;
 
 /* UI */

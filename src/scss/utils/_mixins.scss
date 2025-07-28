@@ -3,16 +3,19 @@
 @use '../utils/functions' as *;
 
 @mixin placeholder() {
-  &::-webkit-input-placeholder {
+  &::input-placeholder {
     @content;
   }
-  &:-moz-placeholder {
+
+  &:placeholder {
     @content;
   }
-  &::-moz-placeholder {
+
+  &::placeholder {
     @content;
   }
-  &:-ms-input-placeholder {
+
+  &:input-placeholder {
     @content;
   }
 }
@@ -60,10 +63,12 @@
   &::-webkit-scrollbar {
     width: $width;
   }
+
   &::-webkit-scrollbar-thumb {
     background: $color-thumb;
     border-radius: $border-radius;
   }
+
   &::-webkit-scrollbar-track {
     background: $color-track;
     border-radius: $border-radius;
