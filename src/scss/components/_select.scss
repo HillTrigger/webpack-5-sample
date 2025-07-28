@@ -154,10 +154,6 @@ select[data-select] {
       mask-size: contain;
       mask-repeat: no-repeat;
       mask-position: center center;
-      mask-image: url('@img/svg/spinner.svg');
-      mask-size: contain;
-      mask-repeat: no-repeat;
-      mask-position: center center;
       animation: spinner 0.5s linear infinite;
     }
 

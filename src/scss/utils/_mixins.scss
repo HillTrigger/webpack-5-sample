@@ -1,23 +1,25 @@
 @use 'sass:map';
+@use 'sass:color';
 @use '../variables/colors' as *;
 @use '../utils/functions' as *;
 
 @mixin placeholder() {
-  &::input-placeholder {
-    @content;
-  }
-
-  &:placeholder {
-    @content;
-  }
-
   &::placeholder {
     @content;
   }
 
-  &:input-placeholder {
-    @content;
-  }
+  // Эти селекторы добавляются с помошью postCss (вроде)
+  // &::-webkit-input-placeholder {
+  //   @content;
+  // }
+
+  // &:-ms-input-placeholder {
+  //   @content;
+  // }
+
+  // &::-moz-placeholder {
+  //   @content;
+  // }
 }
 
 @mixin max-width($media) {
@@ -79,9 +81,9 @@
 }
 
 @mixin define-color-RGB($color-name, $value) {
-  $red: red($value);
-  $green: green($value);
-  $blue: blue($value);
+  $red: color.red($value);
+  $green: color.green($value);
+  $blue: color.blue($value);
 
   #{$color-name}-rgb: $red, $green, $blue;
 }

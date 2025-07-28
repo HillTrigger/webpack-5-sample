@@ -9,6 +9,7 @@ module.exports = {
   rules: {
     'at-rule-no-unknown': null,
     'no-descending-specificity': null,
+    'scss/comment-no-empty': null,
     'at-rule-empty-line-before': [
       'always',
       {
