@@ -30,20 +30,40 @@ export function buildLoaders(
       },
     ],
   };
-  const tsLoader = {
-    test: /\.tsx?$/,
-    use: [
-      threadLoader,
-      {
-        loader: 'ts-loader', // с помощью new ForkTsCheckerWebpackPlugin() - проверку типов можно делать отдельным процессом(если работаете с ts)
-        options: {
-          transpileOnly: true, // Ускоряет сборку, но отключает проверку типов
-          happyPackMode: true, // Обязательно для работы с thread-loader!
-        },
-      },
-    ],
+  // const tsLoader = {
+  //   test: /\.tsx?$/,
+  //   use: [
+  //     threadLoader,
+  //     {
+  //       loader: 'ts-loader', // с помощью new ForkTsCheckerWebpackPlugin() - проверку типов можно делать отдельным процессом(если работаете с ts)
+  //       options: {
+  //         transpileOnly: true, // Ускоряет сборку, но отключает проверку типов
+  //         happyPackMode: true, // Обязательно для работы с thread-loader!
+  //       },
+  //     },
+  //   ],
+  //   exclude: /node_modules/,
+  // };
+  const swcLoader = {
+    test: /\.m?js$/, // .js и .mjs
     exclude: /node_modules/,
+    use: {
+      loader: 'swc-loader',
+      options: {
+        env: {
+          targets: '> 1%, not dead',
+          mode: 'usage',
+          coreJs: '3.22',
+        },
+        jsc: {
+          parser: { syntax: 'ecmascript' },
+        },
+        sourceMaps: isDev,
+        minify: !isDev,
+      },
+    },
   };
+
   const pugLoader = {
     test: /\.pug$/,
     use: {
@@ -102,7 +122,8 @@ export function buildLoaders(
 
   return [
     cssLoader,
-    tsLoader,
+    // tsLoader,
+    swcLoader,
     pugLoader,
     assetLoader,
     // svgLoader,

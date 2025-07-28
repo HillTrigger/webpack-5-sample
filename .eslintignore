@@ -1,3 +1,5 @@
 /public/
 /dist/
 jsconfig.json
+/config
+/webpack.config.ts

@@ -13,6 +13,7 @@
   "description": "",
   "devDependencies": {
     "@fluejs/noscroll": "^1.0.0",
+    "@swc/core": "^1.13.2",
     "@types/glob": "^8.1.0",
     "@types/node": "^22.15.3",
     "@types/webpack": "^5.28.5",
@@ -41,6 +42,7 @@
     "svg-chunk-webpack-plugin": "^7.0.0",
     "svg-sprite-loader": "^6.0.11",
     "svgo-loader": "^4.0.0",
+    "swc-loader": "^0.2.6",
     "thread-loader": "^4.0.4",
     "ts-loader": "^9.5.2",
     "ts-node": "^10.9.2",
