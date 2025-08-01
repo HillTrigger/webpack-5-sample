@@ -8,7 +8,8 @@
     "build:prod": "webpack --env mode=production",
     "start": "webpack serve --env mode=development --open",
     "lint:css": "stylelint src/**/*.scss",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue,css,scss,sass,md,json}\""
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue,css,scss,sass,md,json}\"",
+    "prepare": "husky"
   },
   "author": "",
   "license": "ISC",
@@ -32,6 +33,8 @@
     "eslint-webpack-plugin": "^4.2.0",
     "glob": "^11.0.3",
     "html-webpack-plugin": "^5.6.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.2",
     "mini-css-extract-plugin": "^2.9.2",
     "postcss": "^8.5.6",
     "postcss-loader": "^8.1.1",
@@ -67,5 +70,17 @@
     "overlayscrollbars": "^2.11.4",
     "stylelint-config-recommended-scss": "^15.0.1",
     "tippy.js": "^6.3.7"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,vue}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.{css,scss,sass,vue}": [
+      "stylelint --fix"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
   }
 }
