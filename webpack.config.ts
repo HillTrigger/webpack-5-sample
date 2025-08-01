@@ -18,7 +18,7 @@ export default (rawEnv: Record<string, unknown>) => {
     port: Number(rawEnv.port) || 3000,
     min: rawEnv.min !== 'false',
     analyzer: rawEnv.analyzer === 'true' || rawEnv.analyzer === true,
-    publicPath: String(rawEnv.publicPath),
+    publicPath: rawEnv.publicPath ? String(rawEnv.publicPath) : '',
   };
 
   const paths: BuildPaths = {

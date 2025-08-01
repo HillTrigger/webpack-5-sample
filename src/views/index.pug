@@ -1,9 +1,12 @@
 extends ../partials/template/default
 
 block content
-	section.about
+	section.about(style="margin:0; padding:0; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background:linear-gradient(135deg, #0f2027, #203a43, #2c5364); color:white; display:flex; align-items:center; justify-content:center; height:100vh;")
 		.container
-			h1 О нас
-			p Тут контент страницы "О нас"
-			+svg('365mg')
-			img(src=require('@img/1c-bitrix-24.png'), alt="")
+			div(style="text-align:center; max-width:600px; margin: 0 auto; padding:20px; background:rgba(255,255,255,0.05); border-radius:20px; box-shadow:0 0 20px rgba(0,0,0,0.3);")
+				h1(style="margin-bottom:10px; font-size:2.5rem;") Webpack Build Preview
+				p(style="font-size:1.2rem; margin:10px 0;") Сборка создана Vitaliy Toropov
+				p(style="font-size:1.2rem; margin:10px 0;")
+					| Улучшена 
+					a(href="https://github.com/Hilltrigger" target="_blank" style="color:#90cdf4; text-decoration:none; font-weight:bold; margin-left:5px;") Hilltrigger
+				p(style="margin-top:30px; font-size:0.9rem; color:#aaa") © #{new Date().getFullYear()} Все права защищены.
