@@ -13,6 +13,7 @@
     "paths": {
       "@/*": ["*"],
       "@img/*": ["img/*"],
+      "@svg/*": ["svg/*"],
       "@sections/*": ["modules/sections/*"],
       "@scss/*": ["scss/*"],
       "@modules/*": ["js/modules/*"],

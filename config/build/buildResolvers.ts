@@ -2,13 +2,14 @@ import webpack from 'webpack';
 import { BuildOptions } from './types/types';
 
 export function buildResolvers(
-  options: BuildOptions
+  options: BuildOptions,
 ): webpack.Configuration['resolve'] {
   return {
     extensions: ['.tsx', '.ts', '.js'],
     alias: {
       '@': options.paths.src,
       '@img': options.paths.src + '/img',
+      '@svg': options.paths.src + '/svg',
       '@sections': options.paths.src + '/modules/sections',
       '@scss': options.paths.src + '/scss',
       '@modules': options.paths.src + '/js/modules',

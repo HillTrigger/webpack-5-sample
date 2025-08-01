@@ -18,6 +18,7 @@ export default (rawEnv: Record<string, unknown>) => {
     port: Number(rawEnv.port) || 3000,
     min: rawEnv.min !== 'false',
     analyzer: rawEnv.analyzer === 'true' || rawEnv.analyzer === true,
+    publicPath: String(rawEnv.publicPath),
   };
 
   const paths: BuildPaths = {
@@ -40,6 +41,7 @@ export default (rawEnv: Record<string, unknown>) => {
     analyzer: env.analyzer, // true чтобы анализировать размеры файлов
     publicPath: env.publicPath ?? '',
   });
+  console.log(env);
 
   return config;
 };

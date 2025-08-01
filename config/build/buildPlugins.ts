@@ -14,6 +14,7 @@ export function buildPlugins({
   mode,
   paths,
   analyzer,
+  publicPath,
 }: BuildOptions): webpack.Configuration['plugins'] {
   const isDev = mode === 'development';
   const isProd = mode === 'production';
@@ -30,12 +31,14 @@ export function buildPlugins({
               sitemap: pugFiles.map((p) => `${path.basename(p, '.pug')}`),
               title: filename,
               lang: 'en',
+              publicPath,
             };
 
           default:
             return {
               title: filename,
               lang: 'en',
+              publicPath,
             };
         }
       })();

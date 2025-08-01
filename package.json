@@ -4,9 +4,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "build:dev": "webpack --env mode=development min=false",
+    "build:dev": "webpack --env mode=development",
     "build:prod": "webpack --env mode=production",
-    "start": "webpack serve --env mode=development --open",
+    "dev": "webpack serve --env mode=development --open",
     "lint:css": "stylelint src/**/*.scss",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue,css,scss,sass,md,json}\"",
     "prepare": "husky"
