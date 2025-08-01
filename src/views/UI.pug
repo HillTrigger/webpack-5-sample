@@ -64,6 +64,10 @@ block head
 		table td>.select.select--flat {
 			width: auto;
 		}
+		table td>div .button {
+			margin-left: 0.125rem;
+			margin-right: 0.125rem;
+		}
 
 
 block content
@@ -77,7 +81,7 @@ block content
 						.switcher__custom-wrapper
 							.switcher__custom
 						p.switcher__text Тема
-			
+
 			div
 				//- Typography
 				div
@@ -148,65 +152,11 @@ block content
 								th Не активна
 						tbody
 							//- Solid button row
-							tr
-								td Solid button
-								td
-									div
-										button.button(type="button")
-											+svg('arrow-right')
-											span solid button 40
-									div
-										button.button.button-icon.button-icon--prev(type="button")
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--next(type="button")
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--prev.button-icon--circle(type="button")
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--next.button-icon--circle(type="button")
-											+svg('arrow-right')
-								td
-									div
-										button.button.hover(type="button")
-											+svg('arrow-right')
-											span solid button 40
-									div
-										button.button.button-icon.button-icon--prev.hover(type="button")
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--next.hover(type="button")
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--prev.button-icon--circle.hover(type="button")
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--next.button-icon--circle.hover(type="button")
-											+svg('arrow-right')
-								td
-									div
-										button.button.pressed(type="button")
-											+svg('arrow-right')
-											span solid button 40
-									div
-										button.button.button-icon.button-icon--prev.pressed(type="button")
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--next.pressed(type="button")
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--prev.button-icon--circle.pressed(type="button")
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--next.button-icon--circle.pressed(type="button")
-											+svg('arrow-right')
-								td
-									div
-										button.button(type="button" disabled)
-											+svg('arrow-right')
-											span solid button 40
-									div
-										button.button.button-icon.button-icon--prev(type="button" disabled)
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--next(type="button" disabled)
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--prev.button-icon--circle(type="button" disabled)
-											+svg('arrow-right')
-										button.button.button-icon.button-icon--next.button-icon--circle(type="button" disabled)
-											+svg('arrow-right')
-
+							+exampleButtonType()
+							+exampleButtonType('button--primary-2', 'solid button 2')
+							+exampleButtonType('button--secondary', 'secondary button')
+							+exampleButtonType('button--flat', 'flat button')
+							+exampleButtonType('button--flat-2', 'flat 2 button')
 				//- inputs
 				div
 					h3(style="text-align: center") Inputs
@@ -427,7 +377,7 @@ block content
 
 								td
 									label.radio
-										input.radio__input(type="radio", name="name1")
+										input.radio__input(type="radio" name="name1")
 										.radio__wrap
 											.radio__custom
 											p.radio__text
@@ -460,7 +410,7 @@ block content
 
 								td
 									label.radio
-										input.radio__input(type="radio", name="name3", disabled)
+										input.radio__input(type="radio" name="name3", disabled)
 										.radio__wrap
 											.radio__custom
 											p.radio__text
@@ -493,7 +443,7 @@ block content
 
 								td
 									label.radio
-										input.radio__input(type="radio", name="name2", checked)
+										input.radio__input(type="radio" name="name2", checked)
 										.radio__wrap
 											.radio__custom
 											p.radio__text
@@ -526,7 +476,7 @@ block content
 
 								td
 									label.radio
-										input.radio__input(type="radio", name="name4", disabled, checked)
+										input.radio__input(type="radio" name="name4", disabled, checked)
 										.radio__wrap
 											.radio__custom
 											p.radio__text

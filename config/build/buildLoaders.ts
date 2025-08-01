@@ -84,7 +84,7 @@ export function buildLoaders(
     type: 'asset/resource',
     generator: {
       filename: 'images/[name][ext]',
-      publicPath: '../images/', // путь от CSS до шрифтов
+      // publicPath: '../images/', // путь от CSS до шрифтов
     },
     // Исключаем SVG для спрайтов
     exclude: path.resolve(options.paths.src, 'svg'),

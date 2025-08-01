@@ -1,0 +1,63 @@
+mixin exampleButtonType(modifier = '', label = 'Solid button')
+	tr
+		td #{label}
+		// Default
+		td
+			div
+				button.button(class=modifier, type="button")
+					+svg('arrow-right')
+					span #{label} 40
+			div
+				button.button.button-icon.button-icon--prev(class=modifier, type="button")
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--next(class=modifier, type="button")
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--prev.button-icon--circle(class=modifier, type="button")
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--next.button-icon--circle(class=modifier, type="button")
+					+svg('arrow-right')
+		// Hover
+		td
+			div
+				button.button.hover(class=modifier, type="button")
+					+svg('arrow-right')
+					span #{label} 40
+			div
+				button.button.button-icon.button-icon--prev.hover(class=modifier, type="button")
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--next.hover(class=modifier, type="button")
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--prev.button-icon--circle.hover(class=modifier, type="button")
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--next.button-icon--circle.hover(class=modifier, type="button")
+					+svg('arrow-right')
+		// Pressed
+		td
+			div
+				button.button.pressed(class=modifier, type="button")
+					+svg('arrow-right')
+					span #{label} 40
+			div
+				button.button.button-icon.button-icon--prev.pressed(class=modifier, type="button")
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--next.pressed(class=modifier, type="button")
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--prev.button-icon--circle.pressed(class=modifier, type="button")
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--next.button-icon--circle.pressed(class=modifier, type="button")
+					+svg('arrow-right')
+		// Disabled
+		td
+			div
+				button.button(type="button", disabled, class=modifier)
+					+svg('arrow-right')
+					span #{label} 40
+			div
+				button.button.button-icon.button-icon--prev(type="button", disabled, class=modifier)
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--next(type="button", disabled, class=modifier)
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--prev.button-icon--circle(type="button", disabled, class=modifier)
+					+svg('arrow-right')
+				button.button.button-icon.button-icon--next.button-icon--circle(type="button", disabled, class=modifier)
+					+svg('arrow-right')
