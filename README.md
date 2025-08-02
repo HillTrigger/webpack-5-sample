@@ -1,7 +1,5 @@
 # Boilerplate (Webpack 5 + Pug)
 
-**[UI Demo](http://f0436264.xsph.ru/boilerplate/UI.html)**
-
 ## Development mode
 
 ```bash
@@ -17,34 +15,24 @@ npm run build:prod -- для продакшена
 
 ## Production mode for backend
 
-Если используются чанки в `js`, нужно указать путь, откуда они будут
-загружаться.
-
-Путь задаётся в `config/paths.js`:
-
-```js
-// For Backend
-publicProduction: '/local/templates/example/assets/',
-```
-
-Запуск сборки:
+- Для указания `publicPath` используйте `--env`:
 
 ```bash
-yarn build:prod
+npm run build:dev -- publicPath="/365mg"
 ```
 
 Пример асинхронной загрузки чанков:
 
 ```js
 (async () => {
-  await import(/* webpackChunkName: "Scrollbar" */ '@components/Scrollbar');
-  await import(/* webpackChunkName: "Modal" */ '@components/Modal');
-  await import(/* webpackChunkName: "Dropdown" */ '@components/Dropdown');
-  await import(/* webpackChunkName: "Select" */ '@components/Select');
+	await import(/* webpackChunkName: "Scrollbar" */ '@components/Scrollbar');
+	await import(/* webpackChunkName: "Modal" */ '@components/Modal');
+	await import(/* webpackChunkName: "Dropdown" */ '@components/Dropdown');
+	await import(/* webpackChunkName: "Select" */ '@components/Select');
 })();
 ```
 
-Сборка сохраняется в `/dist`, ~~также создаётся архив с именем проекта.~~
+Сборка сохраняется в `/dist`, также создаётся архив с именем проекта.
 
 ---
 
@@ -88,12 +76,6 @@ mixin svg(name, className = '')
 ---
 
 ## Примечания
-
-- Для указания `publicPath` используйте `--env`:
-
-```bash
-npm run build:dev -- publicPath="/365mg"
-```
 
 - Для запуска анализатора бандла:
 

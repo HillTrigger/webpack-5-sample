@@ -9,78 +9,95 @@ import SvgChunkWebpackPlugin from 'svg-chunk-webpack-plugin';
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
+const ZipPlugin = require('zip-webpack-plugin');
 
 export function buildPlugins({
-  mode,
-  paths,
-  analyzer,
-  publicPath,
+	mode,
+	paths,
+	analyzer,
+	publicPath,
+	dirName,
 }: BuildOptions): webpack.Configuration['plugins'] {
-  const isDev = mode === 'development';
-  const isProd = mode === 'production';
-  const pugFiles = globSync(path.join(paths.html, '**/*.pug'));
+	const isDev = mode === 'development';
+	const isProd = mode === 'production';
+	const pugFiles = globSync(path.join(paths.html, '**/*.pug'));
 
-  const plugins: webpack.Configuration['plugins'] = [
-    // HTML
-    ...pugFiles.map((html: string) => {
-      const filename = path.basename(html).replace(/\.[^.]+$/, '');
-      const templateParameters = (() => {
-        switch (filename) {
-          case 'sitemap':
-            return {
-              sitemap: pugFiles.map((p) => `${path.basename(p, '.pug')}`),
-              title: filename,
-              lang: 'en',
-              publicPath,
-            };
+	const plugins: webpack.Configuration['plugins'] = [
+		// HTML
+		...pugFiles.map((html: string) => {
+			const filename = path.basename(html).replace(/\.[^.]+$/, '');
+			const templateParameters = (() => {
+				switch (filename) {
+					case 'sitemap':
+						return {
+							sitemap: pugFiles.map((p) => `${path.basename(p, '.pug')}`),
+							title: filename,
+							lang: 'en',
+							publicPath,
+						};
 
-          default:
-            return {
-              title: filename,
-              lang: 'en',
-              publicPath,
-            };
-        }
-      })();
-      // views.push(filename);
-      return new HtmlWebpackPlugin({
-        filename: `${filename}.html`,
-        template: html,
-        templateParameters,
-        // chunks: ['bundle', filename],
-        minify: false, // Отключаем минификацию
-      });
-    }),
-    new SpriteLoaderPlugin({ plainSprite: true }),
-    new ESLintPlugin({
-      extensions: ['js'],
-      files: paths.src,
-      emitWarning: true,
-      failOnError: false,
-      overrideConfigFile: '.eslintrc.js',
-    }),
-    new StylelintPlugin({
-      files: 'src/**/*.(s?(a|c)ss)',
-      emitWarning: true,
-    }),
-  ];
+					default:
+						return {
+							title: filename,
+							lang: 'en',
+							publicPath,
+						};
+				}
+			})();
+			// views.push(filename);
+			return new HtmlWebpackPlugin({
+				filename: `${filename}.html`,
+				template: html,
+				templateParameters,
+				// chunks: ['bundle', filename],
+				minify: false, // Отключаем минификацию
+			});
+		}),
+		new SpriteLoaderPlugin({ plainSprite: true }),
+		new ESLintPlugin({
+			extensions: ['js'],
+			files: paths.src,
+			emitWarning: true,
+			failOnError: false,
+			overrideConfigFile: '.eslintrc.js',
+		}),
+		new StylelintPlugin({
+			files: 'src/**/*.(s?(a|c)ss)',
+			emitWarning: true,
+		}),
+	];
 
-  if (isDev) {
-    plugins.push(new webpack.ProgressPlugin()); // Значительно влияет на время сборки
-  }
-  if (isProd) {
-    plugins.push(
-      new MiniCssExtractPlugin({
-        // Нужен для добавления css в отдельные файлы
-        // filename: 'css/bundle.css',
-        filename: 'css/[name].css',
-        chunkFilename: '[id].css',
-      }),
-    );
-    // plugins.push(new Plugin());
-  }
-  if (analyzer) {
-    plugins.push(new BundleAnalyzerPlugin());
-  }
-  return plugins;
+	if (isDev) {
+		plugins.push(new webpack.ProgressPlugin()); // Значительно влияет на время сборки
+	}
+	if (isProd) {
+		plugins.push(
+			new MiniCssExtractPlugin({
+				// Нужен для добавления css в отдельные файлы
+				// filename: 'css/bundle.css',
+				filename: 'css/[name].css',
+				chunkFilename: '[id].css',
+			}),
+		);
+		plugins.push(
+			new ZipPlugin({
+				filename: `${dirName}.zip`,
+				fileOptions: {
+					mtime: new Date(),
+					mode: 0o100664,
+					compress: true,
+					forceZip64Format: false,
+				},
+				zipOptions: {
+					forceZip64Format: false,
+				},
+			}),
+		);
+		// plugins.push(new Plugin());
+	}
+	if (analyzer) {
+		plugins.push(new BundleAnalyzerPlugin());
+	}
+
+	return plugins;
 }

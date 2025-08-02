@@ -5,43 +5,45 @@ import { BuildMode, BuildPaths } from './config/build/types/types';
 import path from 'path';
 
 interface EnvVariables {
-  mode: BuildMode;
-  port: number;
-  min: boolean;
-  analyzer?: boolean;
-  publicPath?: string;
+	mode: BuildMode;
+	port: number;
+	min: boolean;
+	analyzer?: boolean;
+	publicPath?: string;
+	dirName: string;
 }
 
 export default (rawEnv: Record<string, unknown>) => {
-  const env: EnvVariables = {
-    mode: rawEnv.mode === 'production' ? 'production' : 'development',
-    port: Number(rawEnv.port) || 3000,
-    min: rawEnv.min !== 'false',
-    analyzer: rawEnv.analyzer === 'true' || rawEnv.analyzer === true,
-    publicPath: rawEnv.publicPath ? String(rawEnv.publicPath) : '',
-  };
+	const env: EnvVariables = {
+		mode: rawEnv.mode === 'production' ? 'production' : 'development',
+		port: Number(rawEnv.port) || 3000,
+		min: rawEnv.min !== 'false',
+		analyzer: rawEnv.analyzer === 'true' || rawEnv.analyzer === true,
+		publicPath: rawEnv.publicPath ? String(rawEnv.publicPath) : '',
+		dirName: String(path.basename(__dirname)),
+	};
 
-  const paths: BuildPaths = {
-    entry: {
-      _head: path.resolve(__dirname, 'src', 'js/layout/head.js'),
-      bundle: path.resolve(__dirname, 'src', 'js/views/bundle.js'),
-      index: path.resolve(__dirname, 'src', 'js/views/index.js'),
-      // path.resolve(__dirname, 'src', 'test.js'),
-    },
-    output: path.resolve(__dirname, 'dist'),
-    html: path.resolve(__dirname, 'src', 'views'),
-    src: path.resolve(__dirname, 'src'),
-  };
+	const paths: BuildPaths = {
+		entry: {
+			_head: path.resolve(__dirname, 'src', 'js/layout/head.js'),
+			bundle: path.resolve(__dirname, 'src', 'js/views/bundle.js'),
+			index: path.resolve(__dirname, 'src', 'js/views/index.js'),
+			// path.resolve(__dirname, 'src', 'test.js'),
+		},
+		output: path.resolve(__dirname, 'dist'),
+		html: path.resolve(__dirname, 'src', 'views'),
+		src: path.resolve(__dirname, 'src'),
+	};
 
-  const config: webpack.Configuration = buildWebpack({
-    port: env.port ?? 3000,
-    mode: env.mode ?? 'development',
-    min: rawEnv.min !== 'false',
-    paths,
-    analyzer: env.analyzer, // true чтобы анализировать размеры файлов
-    publicPath: env.publicPath ?? '',
-  });
-  console.log(env);
+	const config: webpack.Configuration = buildWebpack({
+		port: env.port ?? 3000,
+		mode: env.mode ?? 'development',
+		min: rawEnv.min !== 'false',
+		paths,
+		analyzer: env.analyzer, // true чтобы анализировать размеры файлов
+		publicPath: env.publicPath ?? '',
+		dirName: env.dirName,
+	});
 
-  return config;
+	return config;
 };
