@@ -4,130 +4,133 @@ import { BuildOptions } from './types/types';
 import path from 'path';
 
 export function buildLoaders(
-  options: BuildOptions,
+	options: BuildOptions,
 ): webpack.ModuleOptions['rules'] {
-  const isDev = options.mode === 'development';
-  const threadLoader = {
-    loader: 'thread-loader', // позволяет выполнять обработку файлов (TypeScript, Babel, Sass и др.) в отдельных потоках (worker'ах), используя возможности многоядерных процессоров.
-    options: {
-      workers: require('os').cpus().length - 1, // Автоматически по числу ядер
-      workerParallelJobs: 50,
-      poolTimeout: 2000,
-    },
-  };
+	const isDev = options.mode === 'development';
+	const threadLoader = {
+		loader: 'thread-loader', // позволяет выполнять обработку файлов (TypeScript, Babel, Sass и др.) в отдельных потоках (worker'ах), используя возможности многоядерных процессоров.
+		options: {
+			workers: require('os').cpus().length - 1, // Автоматически по числу ядер
+			workerParallelJobs: 50,
+			poolTimeout: 2000,
+		},
+	};
 
-  const cssLoader = {
-    test: /\.s[ac]ss$/i,
-    use: [
-      isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
-      'css-loader',
-      'postcss-loader',
-      {
-        loader: 'sass-loader',
-        options: {
-          implementation: require('sass'),
-        },
-      },
-    ],
-  };
-  // const tsLoader = {
-  //   test: /\.tsx?$/,
-  //   use: [
-  //     threadLoader,
-  //     {
-  //       loader: 'ts-loader', // с помощью new ForkTsCheckerWebpackPlugin() - проверку типов можно делать отдельным процессом(если работаете с ts)
-  //       options: {
-  //         transpileOnly: true, // Ускоряет сборку, но отключает проверку типов
-  //         happyPackMode: true, // Обязательно для работы с thread-loader!
-  //       },
-  //     },
-  //   ],
-  //   exclude: /node_modules/,
-  // };
-  const swcLoader = {
-    test: /\.m?js$/, // .js и .mjs
-    exclude: /node_modules/,
-    use: {
-      loader: 'swc-loader',
-      options: {
-        env: {
-          targets: '> 1%, not dead',
-          mode: 'usage',
-          coreJs: '3.22',
-        },
-        jsc: {
-          parser: { syntax: 'ecmascript' },
-        },
-        sourceMaps: isDev,
-        minify: !isDev,
-      },
-    },
-  };
+	const cssLoader = {
+		test: /\.s[ac]ss$/i,
+		use: [
+			isDev
+				? 'style-loader'
+				: {
+						loader: MiniCssExtractPlugin.loader,
+						options: {
+							publicPath: '../', // смещение путей (важно!)
+						},
+					},
+			'css-loader',
+			'postcss-loader',
+			{
+				loader: 'sass-loader',
+				options: {
+					implementation: require('sass'),
+					sourceMap: isDev,
+				},
+			},
+		],
+	};
+	// const tsLoader = {
+	//   test: /\.tsx?$/,
+	//   use: [
+	//     threadLoader,
+	//     {
+	//       loader: 'ts-loader', // с помощью new ForkTsCheckerWebpackPlugin() - проверку типов можно делать отдельным процессом(если работаете с ts)
+	//       options: {
+	//         transpileOnly: true, // Ускоряет сборку, но отключает проверку типов
+	//         happyPackMode: true, // Обязательно для работы с thread-loader!
+	//       },
+	//     },
+	//   ],
+	//   exclude: /node_modules/,
+	// };
+	const swcLoader = {
+		test: /\.m?js$/, // .js и .mjs
+		exclude: /node_modules/,
+		use: {
+			loader: 'swc-loader',
+			options: {
+				env: {
+					targets: '> 1%, not dead',
+					mode: 'usage',
+					coreJs: '3.22',
+				},
+				jsc: {
+					parser: { syntax: 'ecmascript' },
+				},
+				sourceMaps: isDev,
+				minify: !isDev,
+			},
+		},
+	};
 
-  const pugLoader = {
-    test: /\.pug$/,
-    use: {
-      loader: '@webdiscus/pug-loader',
-      options: {
-        mode: 'compile',
-        esModule: true, // для использования import
-        // basedir: path.resolve(options.paths.src),
-        // prependData: `include /partials/index.pug`
-        // pretty: isDev,
-        // compileDebug: isDev,
-        // можно добавить embedFilters и другие опции
-      },
-    },
-  };
-  const assetLoader = {
-    test: /\.(png|jpe?g|gif|svg|webp)$/i,
-    type: 'asset/resource',
-    generator: {
-      filename: 'images/[name][ext]',
-      // publicPath: '../images/', // путь от CSS до шрифтов
-    },
-    // Исключаем SVG для спрайтов
-    exclude: path.resolve(options.paths.src, 'svg'),
-  };
-  const spriteLoader = {
-    test: /\.svg$/,
-    include: path.resolve(options.paths.src, 'svg'), // <--- только /svg/
-    use: [
-      {
-        loader: 'svg-sprite-loader',
-        options: {
-          extract: true,
-          spriteFilename: 'svg/sprite.svg', // <--- сюда будет собираться спрайт
-        },
-      },
-      'svgo-loader', // опционально, для оптимизации SVG
-    ],
-  };
-  // const svgLoader = {
-  //   test: /\.svg$/i,
-  //   type: 'asset/resource',
-  //   generator: {
-  //     filename: 'images/svg/[name][ext]',
-  //   },
-  //   include: [options.paths.src + 'img/svg/'],
-  // };
-  const fontsLoader = {
-    test: /\.(woff|woff2|eot|ttf|otf)$/i,
-    type: 'asset/resource',
-    generator: {
-      filename: 'fonts/[name][ext]',
-      // publicPath: '../fonts/', // путь от CSS до шрифтов
-    },
-  };
+	const pugLoader = {
+		test: /\.pug$/,
+		use: {
+			loader: '@webdiscus/pug-loader',
+			options: {
+				mode: 'compile',
+				esModule: true, // для использования import
+				// basedir: path.resolve(options.paths.src),
+				// prependData: `include /partials/index.pug`
+				// pretty: isDev,
+				// compileDebug: isDev,
+				// можно добавить embedFilters и другие опции
+			},
+		},
+	};
+	const assetLoader = {
+		test: /\.(png|jpe?g|gif|svg|webp)$/i,
+		type: 'asset/resource',
+		generator: {
+			filename: 'images/[name][ext]',
+			// publicPath: '../images/', // путь от CSS до шрифтов
+		},
+		// Исключаем SVG для спрайтов
+		exclude: path.resolve(options.paths.src, 'svg'),
+	};
+	// const spriteLoader = {
+	// 	test: /\.svg$/,
+	// 	include: path.resolve(options.paths.src, 'svg'),
+	// 	type: 'asset/resource',
+	// 	generator: {
+	// 		filename: 'svg/[name][ext]',
+	// 		publicPath: isDev ? '/' : `/${options.publicPath}/svg/`,
+	// 	},
+	// };
+	// const svgLoader = {
+	//   test: /\.svg$/i,
+	//   type: 'asset/resource',
+	//   generator: {
+	//     filename: 'images/svg/[name][ext]',
+	//   },
+	//   include: [options.paths.src + 'img/svg/'],
+	// };
+	const fontsLoader = {
+		test: /\.(woff|woff2|eot|ttf|otf)$/i,
+		type: 'asset/resource',
+		generator: {
+			filename: 'fonts/[name][ext]',
+			// publicPath: '../fonts/', // путь от CSS до шрифтов
+		},
+	};
 
-  return [
-    cssLoader,
-    // tsLoader,
-    swcLoader,
-    pugLoader,
-    assetLoader,
-    // svgLoader,
-    spriteLoader,
-    fontsLoader,
-  ];
+	return [
+		cssLoader,
+		// tsLoader,
+		swcLoader,
+		pugLoader,
+		assetLoader,
+		// svgLoader,
+		// spriteLoader,
+		fontsLoader,
+	];
 }

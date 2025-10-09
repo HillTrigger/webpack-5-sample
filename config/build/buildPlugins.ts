@@ -10,6 +10,7 @@ const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
+import SVGSpritemapPlugin from 'svg-spritemap-webpack-plugin';
 
 export function buildPlugins({
 	mode,
@@ -22,6 +23,8 @@ export function buildPlugins({
 	const isProd = mode === 'production';
 	const pugFiles = globSync(path.join(paths.html, '**/*.pug'));
 
+	console.log('>>> buildPlugins publicPath =', publicPath);
+
 	const plugins: webpack.Configuration['plugins'] = [
 		// HTML
 		...pugFiles.map((html: string) => {
@@ -33,14 +36,14 @@ export function buildPlugins({
 							sitemap: pugFiles.map((p) => `${path.basename(p, '.pug')}`),
 							title: filename,
 							lang: 'en',
-							publicPath,
+							publicPath: publicPath,
 						};
 
 					default:
 						return {
 							title: filename,
 							lang: 'en',
-							publicPath,
+							publicPath: publicPath,
 						};
 				}
 			})();
@@ -53,7 +56,22 @@ export function buildPlugins({
 				minify: false, // Отключаем минификацию
 			});
 		}),
-		new SpriteLoaderPlugin({ plainSprite: true }),
+		// new SpriteLoaderPlugin({ plainSprite: true }),
+		new SVGSpritemapPlugin('src/svg/**/*.svg', {
+			output: {
+				filename: 'svg/sprite.svg', // куда положить готовый спрайт
+				svg: {
+					sizes: false, // не включаем размеры, обычно удобнее
+				},
+			},
+			sprite: {
+				prefix: '',
+				generate: {
+					symbol: true, // используем <symbol> для <use>
+					title: false, // отключаем <title> в символах
+				},
+			},
+		}),
 		new ESLintPlugin({
 			extensions: ['js'],
 			files: paths.src,

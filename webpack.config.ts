@@ -41,7 +41,7 @@ export default (rawEnv: Record<string, unknown>) => {
 		min: rawEnv.min !== 'false',
 		paths,
 		analyzer: env.analyzer, // true чтобы анализировать размеры файлов
-		publicPath: env.publicPath ?? '',
+		publicPath: env.mode === 'development' ? '' : env.publicPath,
 		dirName: env.dirName,
 	});
 

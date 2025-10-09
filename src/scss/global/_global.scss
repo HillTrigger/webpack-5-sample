@@ -1,67 +1,67 @@
 @use '../variables/variables' as *;
 
 html {
-  color: var(--color-main);
-  background-color: var(--bg-color-main);
-  transition-timing-function: $transition-timing-function;
-  transition-duration: $transition-duration;
-  transition-property: background-color, color;
+	color: var(--color-main);
+	background-color: var(--bg-color-main);
+	transition-timing-function: $transition-timing-function;
+	transition-duration: $transition-duration;
+	transition-property: background-color, color;
 
-  // &.transition-theme-animate {
-  //   html,
-  //   body,
-  //   a,
-  //   button {
-  //     transition-duration: 0s !important;
-  //   }
-  // }
+	// &.transition-theme-animate {
+	//   html,
+	//   body,
+	//   a,
+	//   button {
+	//     transition-duration: 0s !important;
+	//   }
+	// }
 
-  &:not(.is-ready) {
-    * {
-      transition-duration: 0s !important;
-    }
-  }
+	&:not(.is-ready) {
+		* {
+			transition-duration: 0s !important;
+		}
+	}
 }
 
 picture {
-  display: block;
+	display: block;
 
-  img {
-    width: 100%;
-  }
+	img {
+		width: 100%;
+	}
 }
 
 img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+	display: block;
+	max-width: 100%;
+	height: auto;
 }
 
 svg {
-  display: block;
-  width: 1em;
-  height: 1em;
-  fill: currentcolor;
+	display: block;
+	width: 1em;
+	height: 1em;
+	fill: currentcolor;
 }
 
 .picture-ratio {
-  --ratio: 100%;
+	--ratio: 100%;
 
-  position: relative;
+	position: relative;
 
-  &::before {
-    display: block;
-    width: 100%;
-    padding-bottom: var(--ratio);
-    content: '';
-  }
+	&::before {
+		display: block;
+		width: 100%;
+		padding-bottom: var(--ratio);
+		content: '';
+	}
 
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
+	img {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
 }

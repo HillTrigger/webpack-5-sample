@@ -3,32 +3,32 @@
 @use 'sass:color';
 
 @function hextorgb($hex) {
-  @return color.channel($hex, 'red'), color.channel($hex, 'green'),
-    color.channel($hex, 'blue');
+	@return color.channel($hex, 'red'), color.channel($hex, 'green'),
+		color.channel($hex, 'blue');
 }
 
 @function rem($px, $context: 16) {
-  $raw: math.div($px, $context) * 1rem * 10000;
-  $rounded: math.round($raw);
+	$raw: math.div($px, $context) * 1rem * 10000;
+	$rounded: math.round($raw);
 
-  @return math.div($rounded, 10000);
+	@return math.div($rounded, 10000);
 }
 
 @function split-str($input, $separator) {
-  $index: string.index($input, $separator);
+	$index: string.index($input, $separator);
 
-  @if not $index {
-    @return $input null;
-  }
+	@if not $index {
+		@return $input null;
+	}
 
-  $str-1: string.slice($input, 1, $index - 1);
-  $str-2: string.slice($input, $index + 1);
+	$str-1: string.slice($input, 1, $index - 1);
+	$str-2: string.slice($input, $index + 1);
 
-  @return $str-1 $str-2;
+	@return $str-1 $str-2;
 }
 
 @function src-font($font, $path, $weight) {
-  @return local('#{$font}-#{$weight}'),
-    url('#{$path}#{$font}-#{$weight}.woff2') format('woff2'),
-    url('#{$path}#{$font}-#{$weight}.woff') format('woff');
+	@return local('#{$font}-#{$weight}'),
+		url('#{$path}#{$font}-#{$weight}.woff2') format('woff2'),
+		url('#{$path}#{$font}-#{$weight}.woff') format('woff');
 }

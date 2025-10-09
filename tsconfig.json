@@ -1,30 +1,31 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist/",
-    "noImplicitAny": true,
-    "module": "ESNext",
-    "target": "es5",
-    "jsx": "react",
-    "allowJs": true,
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true,
-    "baseUrl": "src",
-    "paths": {
-      "@/*": ["*"],
-      "@img/*": ["img/*"],
-      "@svg/*": ["svg/*"],
-      "@sections/*": ["modules/sections/*"],
-      "@scss/*": ["scss/*"],
-      "@modules/*": ["js/modules/*"],
-      "@components/*": ["js/components/*"],
-      "@helpers/*": ["js/helpers/*"],
-      "@utils/*": ["js/utils/*"]
-    }
-  },
-  "ts-node": {
-    "compilerOptions": {
-      "module": "CommonJS"
-    }
-  }
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"noImplicitAny": true,
+		"module": "ESNext",
+		"target": "es5",
+		"jsx": "react",
+		"allowJs": true,
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+		"baseUrl": "src",
+		"paths": {
+			"@/*": ["*"],
+			"@img/*": ["img/*"],
+			"@svg/*": ["svg/*"],
+			"@sections/*": ["modules/sections/*"],
+			"@scss/*": ["scss/*"],
+			"@modules/*": ["js/modules/*"],
+			"@components/*": ["js/components/*"],
+			"@helpers/*": ["js/helpers/*"],
+			"@utils/*": ["js/utils/*"],
+			"@module/*": ["node_modules/*"]
+		}
+	},
+	"ts-node": {
+		"compilerOptions": {
+			"module": "CommonJS"
+		}
+	}
 }
