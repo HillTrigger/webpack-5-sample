@@ -3,6 +3,7 @@ import webpack from 'webpack';
 type BuildReportPluginOptions = {
 	appUrl: string;
 	apiUrl: string;
+	isDevServer?: boolean;
 };
 
 export class BuildReportPlugin {
@@ -87,8 +88,6 @@ export class BuildReportPlugin {
 			},
 		);
 
-		this.clearLine();
-
 		const lines = [
 			'',
 			...this.brandBanner,
@@ -96,11 +95,13 @@ export class BuildReportPlugin {
 			`✅ Build ready in ${buildTimeMs} ms`,
 			'📦 Бандлы:',
 			...entrypointLines,
-			`🌐 App: ${this.options.appUrl}`,
-			`🧪 API: ${this.options.apiUrl}`,
+			...(this.options.isDevServer
+				? [`🌐 App: ${this.options.appUrl}`, `🧪 API: ${this.options.apiUrl}`]
+				: []),
 			'',
 		];
 
+		this.clearLine();
 		process.stdout.write(lines.join('\n'));
 	}
 

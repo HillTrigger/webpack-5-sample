@@ -1,5 +1,5 @@
 export interface BuildPaths {
-	entry: Record<string, string>;
+	entry: Record<string, string | undefined>;
 	html: string;
 	output: string;
 	src: string;
@@ -16,4 +16,5 @@ export interface BuildOptions {
 	publicPath: string;
 	dirName: string;
 	css: boolean;
+	isDevServer: boolean;
 }

@@ -19,6 +19,7 @@ export function buildPlugins({
 	publicPath,
 	dirName,
 	css,
+	isDevServer,
 }: BuildOptions): webpack.Configuration['plugins'] {
 	const isDev = mode === 'development';
 	const isProd = mode === 'production';
@@ -86,6 +87,13 @@ export function buildPlugins({
 		}),
 	];
 
+	plugins.push(
+		new BuildReportPlugin({
+			apiUrl: 'http://localhost:3000/api/',
+			appUrl: 'http://localhost:3000',
+			isDevServer,
+		}),
+	);
 	if (css) {
 		plugins.push(
 			new MiniCssExtractPlugin({
@@ -98,12 +106,6 @@ export function buildPlugins({
 	}
 	if (isDev) {
 		// plugins.push(new webpack.ProgressPlugin()); // Значительно влияет на время сборки
-		plugins.push(
-			new BuildReportPlugin({
-				apiUrl: 'http://localhost:3000/api/',
-				appUrl: 'http://localhost:3000',
-			}),
-		);
 	}
 	if (isProd) {
 		plugins.push(

@@ -12,6 +12,7 @@ interface EnvVariables {
 	publicPath?: string;
 	dirName: string;
 	css: boolean;
+	isDevServer: boolean;
 }
 
 export default (rawEnv: Record<string, unknown>) => {
@@ -23,11 +24,20 @@ export default (rawEnv: Record<string, unknown>) => {
 		publicPath: rawEnv.publicPath ? String(rawEnv.publicPath) : '',
 		dirName: String(path.basename(__dirname)),
 		css: rawEnv.styles !== 'js',
+		isDevServer: rawEnv.WEBPACK_SERVE ? true : false,
 	};
 
 	const paths: BuildPaths = {
 		entry: {
 			_head: path.resolve(__dirname, 'src', 'js/layout/head.js'),
+			...(env.mode === 'development'
+				? {
+						_dev:
+							env.mode === 'development'
+								? path.resolve(__dirname, 'src', 'js/layout/dev.js')
+								: undefined,
+					}
+				: {}),
 			bundle: path.resolve(__dirname, 'src', 'js/views/bundle.js'),
 			index: path.resolve(__dirname, 'src', 'js/views/index.js'),
 			// path.resolve(__dirname, 'src', 'test.js'),
@@ -46,6 +56,7 @@ export default (rawEnv: Record<string, unknown>) => {
 		publicPath: env.publicPath ? env.publicPath : '',
 		dirName: env.dirName,
 		css: env.css,
+		isDevServer: env.isDevServer,
 	});
 
 	return config;
