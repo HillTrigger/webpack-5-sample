@@ -19,7 +19,6 @@ export function buildDevServer(options: BuildOptions): DevServerConfiguration {
 			{
 				context: ['/api'],
 				target: 'http://localhost:3001',
-				changeOrigin: true,
 			},
 		],
 		// client: {

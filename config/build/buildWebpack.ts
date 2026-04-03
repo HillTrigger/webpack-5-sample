@@ -38,6 +38,10 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
 				config: [__filename],
 			},
 		},
+		stats: 'errors-only',
+		infrastructureLogging: {
+			level: 'none',
+		},
 		resolve: buildResolvers(options),
 		devtool: isDev && 'eval-cheap-module-source-map',
 		devServer: isDev ? buildDevServer(options) : undefined,

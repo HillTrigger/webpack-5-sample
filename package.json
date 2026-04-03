@@ -11,7 +11,7 @@
 		"lint:css": "stylelint src/**/*.scss",
 		"format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,vue,css,scss,sass,md,json}\"",
 		"prepare": "husky",
-		"mock": "json-server --watch ./mock/db.json --routes ./mock/routes.json --middlewares ./mock/middleware.js --port 3001"
+		"mock": "nodemon --quiet --watch ./mock/db.json --watch ./mock/server.js --ext js,json --exec node ./mock/server.js"
 	},
 	"author": "",
 	"license": "ISC",
@@ -41,6 +41,7 @@
 		"json-server": "^0.17.4",
 		"lint-staged": "^16.1.2",
 		"mini-css-extract-plugin": "2.9.2",
+		"nodemon": "^3.1.14",
 		"postcss": "8.5.6",
 		"postcss-loader": "8.1.1",
 		"postcss-preset-env": "10.2.4",

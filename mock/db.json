@@ -1,6 +1,7 @@
 {
 	"data": {
 		"name": "Webpack 5 Sample",
-		"desc": "Template for developers"
+		"desc": "Template for developers",
+		"author": "HillTrigger"
 	}
 }

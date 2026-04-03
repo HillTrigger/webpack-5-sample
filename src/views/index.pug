@@ -1,4 +1,124 @@
 extends ../partials/template/default
 
 block content
-  p Hello world!
+	.section
+		.card
+			.card__badge MOCK API
+			.card__grid
+				.card__row
+					.card__label Name
+					.card__value.js-name
+				.card__row
+					.card__label Description
+					.card__value.js-desc
+				.card__row
+					.card__label Author
+					.card__value.js-author
+
+	style.
+		:root {
+			--bg-1: #0b1020;
+			--bg-2: #11182d;
+			--card: rgba(255, 255, 255, 0.08);
+			--border: rgba(255, 255, 255, 0.12);
+			--text: #f8fafc;
+			--muted: #94a3b8;
+			--accent: #22c55e;
+			--accent-soft: rgba(34, 197, 94, 0.14);
+			--shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+		}
+
+		body {
+			margin: 0;
+			font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+			color: var(--text);
+			background:
+				radial-gradient(circle at top, rgba(34, 197, 94, 0.18), transparent 28%),
+				linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+		}
+
+		.section {
+			min-height: 100vh;
+			display: grid;
+			place-items: center;
+			padding: 32px 16px;
+			box-sizing: border-box;
+		}
+
+		.card {
+			width: min(100%, 720px);
+			padding: 32px;
+			border-radius: 28px;
+			background: var(--card);
+			border: 1px solid var(--border);
+			backdrop-filter: blur(16px);
+			box-shadow: var(--shadow);
+			box-sizing: border-box;
+		}
+
+		.card__badge {
+			display: inline-flex;
+			align-items: center;
+			padding: 8px 12px;
+			border-radius: 999px;
+			background: var(--accent-soft);
+			color: #86efac;
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			margin-bottom: 20px;
+		}
+
+		.card__title {
+			margin: 0 0 12px;
+			font-size: clamp(32px, 5vw, 52px);
+			line-height: 1.02;
+			letter-spacing: -0.04em;
+			min-height: 1em;
+		}
+
+		.card__desc {
+			margin: 0 0 28px;
+			font-size: 18px;
+			line-height: 1.65;
+			color: var(--muted);
+			min-height: 1.65em;
+		}
+
+		.card__grid {
+			display: grid;
+			gap: 14px;
+		}
+
+		.card__row {
+			padding: 18px 20px;
+			border-radius: 18px;
+			background: rgba(255, 255, 255, 0.04);
+			border: 1px solid rgba(255, 255, 255, 0.08);
+		}
+
+		.card__label {
+			font-size: 12px;
+			font-weight: 700;
+			letter-spacing: 0.08em;
+			text-transform: uppercase;
+			color: var(--muted);
+			margin-bottom: 8px;
+		}
+
+		.card__value {
+			font-size: 18px;
+			line-height: 1.5;
+			min-height: 1.5em;
+			word-break: break-word;
+		}
+
+	script.
+		fetch('http://localhost:3000/api/data')
+			.then((response) => response.json())
+			.then((data) => {
+				document.querySelector('.js-name').textContent = data.name || '';
+				document.querySelector('.js-desc').textContent = data.desc || '';
+				document.querySelector('.js-author').textContent = data.author || '';
+			});

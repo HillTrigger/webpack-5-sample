@@ -5,7 +5,7 @@ import { BuildOptions } from './types/types';
 import { globSync } from 'fs';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-import SvgChunkWebpackPlugin from 'svg-chunk-webpack-plugin';
+import { BuildReportPlugin } from '../plugins/BuildReportPlugin';
 const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');
@@ -97,7 +97,13 @@ export function buildPlugins({
 		);
 	}
 	if (isDev) {
-		plugins.push(new webpack.ProgressPlugin()); // Значительно влияет на время сборки
+		// plugins.push(new webpack.ProgressPlugin()); // Значительно влияет на время сборки
+		plugins.push(
+			new BuildReportPlugin({
+				apiUrl: 'http://localhost:3000/api/',
+				appUrl: 'http://localhost:3000',
+			}),
+		);
 	}
 	if (isProd) {
 		plugins.push(
