@@ -15,4 +15,5 @@ export interface BuildOptions {
 	analyzer: boolean;
 	publicPath: string;
 	dirName: string;
+	css: boolean;
 }

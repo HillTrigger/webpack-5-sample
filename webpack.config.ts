@@ -11,6 +11,7 @@ interface EnvVariables {
 	analyzer?: boolean;
 	publicPath?: string;
 	dirName: string;
+	css: boolean;
 }
 
 export default (rawEnv: Record<string, unknown>) => {
@@ -21,6 +22,7 @@ export default (rawEnv: Record<string, unknown>) => {
 		analyzer: rawEnv.analyzer === 'true' || rawEnv.analyzer === true,
 		publicPath: rawEnv.publicPath ? String(rawEnv.publicPath) : '',
 		dirName: String(path.basename(__dirname)),
+		css: rawEnv.styles !== 'js',
 	};
 
 	const paths: BuildPaths = {
@@ -40,9 +42,10 @@ export default (rawEnv: Record<string, unknown>) => {
 		mode: env.mode ?? 'development',
 		min: rawEnv.min !== 'false',
 		paths,
-		analyzer: env.analyzer, // true чтобы анализировать размеры файлов
-		publicPath: env.mode === 'development' ? '' : env.publicPath,
+		analyzer: env.analyzer || false, // true чтобы анализировать размеры файлов
+		publicPath: env.publicPath ? env.publicPath : '',
 		dirName: env.dirName,
+		css: env.css,
 	});
 
 	return config;

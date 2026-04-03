@@ -19,14 +19,14 @@ export function buildLoaders(
 	const cssLoader = {
 		test: /\.s[ac]ss$/i,
 		use: [
-			isDev
-				? 'style-loader'
-				: {
+			options.css
+				? {
 						loader: MiniCssExtractPlugin.loader,
 						options: {
 							publicPath: '../', // смещение путей (важно!)
 						},
-					},
+					}
+				: 'style-loader',
 			'css-loader',
 			'postcss-loader',
 			{

@@ -18,6 +18,7 @@ export function buildPlugins({
 	analyzer,
 	publicPath,
 	dirName,
+	css,
 }: BuildOptions): webpack.Configuration['plugins'] {
 	const isDev = mode === 'development';
 	const isProd = mode === 'production';
@@ -85,10 +86,7 @@ export function buildPlugins({
 		}),
 	];
 
-	if (isDev) {
-		plugins.push(new webpack.ProgressPlugin()); // Значительно влияет на время сборки
-	}
-	if (isProd) {
+	if (css) {
 		plugins.push(
 			new MiniCssExtractPlugin({
 				// Нужен для добавления css в отдельные файлы
@@ -97,6 +95,11 @@ export function buildPlugins({
 				chunkFilename: '[id].css',
 			}),
 		);
+	}
+	if (isDev) {
+		plugins.push(new webpack.ProgressPlugin()); // Значительно влияет на время сборки
+	}
+	if (isProd) {
 		plugins.push(
 			new ZipPlugin({
 				filename: `${dirName}.zip`,

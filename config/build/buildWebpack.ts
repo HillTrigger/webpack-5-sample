@@ -1,6 +1,5 @@
 import webpack from 'webpack';
 import path from 'path';
-import HTMLWebpackPlugin from 'html-webpack-plugin';
 import { buildDevServer } from './buildDevServer';
 import { buildLoaders } from './buildLoaders';
 import { buildPlugins } from './buildPlugins';
@@ -29,8 +28,18 @@ export function buildWebpack(options: BuildOptions): webpack.Configuration {
 		module: {
 			rules: buildLoaders(options),
 		},
+		cache: {
+			type: 'filesystem',
+			cacheDirectory: path.resolve(
+				process.cwd(),
+				'node_modules/.cache/webpack',
+			),
+			buildDependencies: {
+				config: [__filename],
+			},
+		},
 		resolve: buildResolvers(options),
-		devtool: isDev && 'inline-source-map',
+		devtool: isDev && 'eval-cheap-module-source-map',
 		devServer: isDev ? buildDevServer(options) : undefined,
 	};
 }
