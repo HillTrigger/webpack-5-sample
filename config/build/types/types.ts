@@ -1,6 +1,7 @@
 export interface BuildPaths {
 	entry: Record<string, string | undefined>;
 	html: string;
+	modals: string;
 	output: string;
 	src: string;
 }

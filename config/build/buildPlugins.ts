@@ -24,8 +24,7 @@ export function buildPlugins({
 	const isDev = mode === 'development';
 	const isProd = mode === 'production';
 	const pugFiles = globSync(path.join(paths.html, '**/*.pug'));
-
-	console.log('>>> buildPlugins publicPath =', publicPath);
+	const modalFiles = globSync(path.resolve(paths.modals, '**/*.pug'));
 
 	const plugins: webpack.Configuration['plugins'] = [
 		// HTML
@@ -33,6 +32,13 @@ export function buildPlugins({
 			const filename = path.basename(html).replace(/\.[^.]+$/, '');
 			const templateParameters = (() => {
 				switch (filename) {
+					case 'modals':
+						return {
+							modals: modalFiles.map((p) => path.basename(p, '.pug')),
+							title: filename,
+							lang: 'en',
+							publicPath: publicPath,
+						};
 					case 'sitemap':
 						return {
 							sitemap: pugFiles.map((p) => `${path.basename(p, '.pug')}`),
@@ -92,6 +98,7 @@ export function buildPlugins({
 			apiUrl: 'http://localhost:3000/api/',
 			appUrl: 'http://localhost:3000',
 			isDevServer,
+			publicPath,
 		}),
 	);
 	if (css) {

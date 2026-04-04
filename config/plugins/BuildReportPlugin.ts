@@ -4,6 +4,7 @@ type BuildReportPluginOptions = {
 	appUrl: string;
 	apiUrl: string;
 	isDevServer?: boolean;
+	publicPath: string;
 };
 
 export class BuildReportPlugin {
@@ -91,6 +92,8 @@ export class BuildReportPlugin {
 		const lines = [
 			'',
 			...this.brandBanner,
+			'',
+			this.options.publicPath ? `publicPath= ${this.options.publicPath}` : '',
 			'',
 			`✅ Build ready in ${buildTimeMs} ms`,
 			'📦 Бандлы:',

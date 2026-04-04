@@ -1,0 +1,12 @@
+extends ../partials/template/default
+
+
+block content
+	section.sitemap
+		.container
+			h1= title
+			ul
+				each modal in modals
+					li
+						a(data-modal-target=`#modal-${modal}`)= modal
+

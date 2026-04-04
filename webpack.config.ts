@@ -44,6 +44,7 @@ export default (rawEnv: Record<string, unknown>) => {
 		},
 		output: path.resolve(__dirname, 'dist'),
 		html: path.resolve(__dirname, 'src', 'views'),
+		modals: path.resolve(__dirname, 'src', 'partials/modals'),
 		src: path.resolve(__dirname, 'src'),
 	};
 
