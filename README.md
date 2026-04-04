@@ -16,7 +16,7 @@
 - Stylelint
 - Prettier
 
-## Быстрый старт
+## Быстрый старт  (Recomended NodeJs: ^22.17.1)
 
 ```bash
 npm install
