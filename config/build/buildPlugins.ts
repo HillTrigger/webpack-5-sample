@@ -60,7 +60,7 @@ export function buildPlugins({
 				filename: `${filename}.html`,
 				template: html,
 				templateParameters,
-				// chunks: ['bundle', filename],
+				chunks: ['_head', 'bundle', filename],
 				minify: false, // Отключаем минификацию
 			});
 		}),
