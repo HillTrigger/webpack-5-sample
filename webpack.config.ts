@@ -32,10 +32,7 @@ export default (rawEnv: Record<string, unknown>) => {
 			_head: path.resolve(__dirname, 'src', 'js/layout/head.js'),
 			...(env.mode === 'development'
 				? {
-						_dev:
-							env.mode === 'development'
-								? path.resolve(__dirname, 'src', 'js/layout/dev.js')
-								: undefined,
+						_dev: path.resolve(__dirname, 'src', 'js/layout/dev.js'),
 					}
 				: {}),
 			bundle: path.resolve(__dirname, 'src', 'js/views/bundle.js'),
